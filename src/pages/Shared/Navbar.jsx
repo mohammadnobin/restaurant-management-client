@@ -8,7 +8,6 @@ import { ImCross } from "react-icons/im";
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
   const [show, setShow] = useState(false);
-  console.log(user);
   const handleSignOut = () => {
     signOutUser()
       .then((restult) => {
@@ -32,7 +31,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="border-b relative">
+    <nav className="border-b relative z-50 bg-white">
       <div className="containerr py-4">
         {/* small devise design */}
         <div className="md:hidden  grid grid-cols-3 items-center justify-between">

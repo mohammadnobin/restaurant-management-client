@@ -51,15 +51,15 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="relative bg-white z-0 after:absolute after:w-1/2 after:h-2/3 after:bg-[rgba(234,106,18,0.2)] after:right-0 after:-top-5 after:rounded-bl-full after:z-[-1]">
+    <div className="relative pt-10 bg-white z-0 after:absolute after:w-1/2 after:h-2/3 after:bg-[rgba(234,106,18,0.2)] after:right-0 after:-top-5 after:rounded-bl-full after:z-[-1]">
       <div className="containerr">
         <div className="lg:grid xl:grid-cols-3 lg:grid-cols-2  items-center">
           <div className="w-full">
-            <div className="lg:my-10 my-5">
+            {/* <div className="lg:my-10 my-5">
               <Link to="/">
                 <img className="w-2/3 lg:mx-0 mx-auto" src={logo} alt="lgog" />
               </Link>
-            </div>
+            </div> */}
             <h2 className="font-semibold text-center text-midnight-navy text-4xl">
               Sign In
             </h2>

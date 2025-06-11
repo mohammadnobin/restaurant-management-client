@@ -17,21 +17,25 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: '/details',
-        element: <PrivateRoute><DetailsPage /></PrivateRoute>
-      }
+        path: "/details",
+        element: (
+          <PrivateRoute>
+            <DetailsPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/signup",
+        element: <SignUpPage />,
+      },
+      {
+        path: "/signin",
+        element: <SignInPage />,
+      },
     ],
-},
-{
-  path: '/signup',
-  element: <SignUpPage />
-},
-{
-  path: '/signin',
-  element: <SignInPage/>
-},
+  },
   {
-    path: '*',
-    element: <ErrorPage />
-  }
+    path: "*",
+    element: <ErrorPage />,
+  },
 ]);
