@@ -1,21 +1,45 @@
 import React from "react";
 import UseAuth from "../../hooks/UseAuth";
+import Swal from "sweetalert2";
 
 const AddFoodPage = () => {
-  const {user} = UseAuth()
-  const handleFoodAdd =(e)=>{
-    e.preventDefault()
+  const { user } = UseAuth();
+  const handleFoodAdd = (e) => {
+    e.preventDefault();
     const form = e.target;
-    const formData = new FormData(form)
-    const data = Object.fromEntries(formData.entries())
-    console.log(data)
-  }
+    const formData = new FormData(form);
+    const newFoods = Object.fromEntries(formData.entries());
+    newFoods.parches_count = 0;
+
+    fetch(`${import.meta.env.VITE_API_URL}/add_foods`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newFoods),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Good job!",
+            text: "successfully added food",
+            icon: "success",
+          });
+        }
+      });
+  };
   return (
     <div className="containerr">
       <div className="lg:w-2/3 mx-auto my-24 p-8 border border-orange rounded-2xl ">
-        <form onSubmit={handleFoodAdd} className="md:grid md:space-y-0 space-y-4 grid-cols-2  gap-6">
+        <form
+          onSubmit={handleFoodAdd}
+          className="md:grid md:space-y-0 space-y-4 grid-cols-2  gap-6"
+        >
           <div className="flex flex-col">
-            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">Food Name</label>
+            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
+              Food Name
+            </label>
             <input
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none "
               type="text"
@@ -24,7 +48,9 @@ const AddFoodPage = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">Food Image</label>
+            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
+              Food Image
+            </label>
             <input
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
               type="text"
@@ -33,7 +59,9 @@ const AddFoodPage = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">Food Category</label>
+            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
+              Food Category
+            </label>
             <input
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
               type="text"
@@ -42,7 +70,9 @@ const AddFoodPage = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">Food Origin (Country)</label>
+            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
+              Food Origin (Country)
+            </label>
             <input
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
               type="text"
@@ -51,7 +81,9 @@ const AddFoodPage = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">Quantity</label>
+            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
+              Quantity
+            </label>
             <input
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
               type="text"
@@ -60,7 +92,9 @@ const AddFoodPage = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">Price </label>
+            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
+              Price{" "}
+            </label>
             <input
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
               type="text"
@@ -68,37 +102,48 @@ const AddFoodPage = () => {
               name="price"
             />
           </div>
-            <div className="flex flex-col col-span-2">
-            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">Description </label>
+          <div className="flex flex-col col-span-2">
+            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
+              Description{" "}
+            </label>
             <textarea
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
               type="text"
               name="description"
-             placeholder="Description"
+              placeholder="Description"
             ></textarea>
           </div>
           <div className="flex flex-col">
-            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">Name</label>
+            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
+              Name
+            </label>
             <input
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
               type="text"
-              defaultValue={user?.email}
-              readOnly
-              name='email'
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">Email</label>
-            <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
-              type="text"
-              defaultValue={user?.displayName}
+                         defaultValue={user?.displayName}
               readOnly
               name="name"
             />
           </div>
+          <div className="flex flex-col">
+            <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
+              Email
+            </label>
+            <input
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              type="text"
+                 defaultValue={user?.email}
+              readOnly
+              name="email"
+            />
+          </div>
           <div className="col-span-2">
-            <button className="bg-orange w-full py-4 text-xl text-white font-bold rounded-2xl cursor-pointer" type="submit">Submit</button>
+            <button
+              className="bg-orange w-full py-4 text-xl text-white font-bold rounded-2xl cursor-pointer"
+              type="submit"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>

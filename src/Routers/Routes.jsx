@@ -10,6 +10,7 @@ import AllFoodsPage from "../pages/AllFoodsPage/AllFoodsPage";
 import AddFoodPage from "../pages/AddFoodPage/AddFoodPage";
 import MyFoodsPage from "../pages/MyFoodsPage/MyFoodsPage";
 import MyOrdersPage from "../pages/MyOrdersPage/MyOrdersPage";
+import DetailsPage from "../pages/DetailsPage/DetailsPage";
 
 export const router = createBrowserRouter([
   {
@@ -22,7 +23,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/all_foods",
+        loader:()=> fetch(`${import.meta.env.VITE_API_URL}/all_foods`),
+        hydrateFallbackElement:<h2>this is loading</h2>,
         element: <AllFoodsPage />,
+      },
+      {
+        path: '/single_food/:id',
+        element: <DetailsPage />
       },
       {
         path: "/gallery",
