@@ -5,7 +5,11 @@ import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import SignInPage from "../pages/SignInPage/SignInPage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
-import DetailsPage from "../pages/DetailsPage/DetailsPage";
+import GalleryPage from "../pages/Gallery/galleryPage";
+import AllFoodsPage from "../pages/AllFoodsPage/AllFoodsPage";
+import AddFoodPage from "../pages/AddFoodPage/AddFoodPage";
+import MyFoodsPage from "../pages/MyFoodsPage/MyFoodsPage";
+import MyOrdersPage from "../pages/MyOrdersPage/MyOrdersPage";
 
 export const router = createBrowserRouter([
   {
@@ -17,12 +21,12 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/details",
-        element: (
-          <PrivateRoute>
-            <DetailsPage />
-          </PrivateRoute>
-        ),
+        path: "/all_foods",
+        element: <AllFoodsPage />,
+      },
+      {
+        path: "/gallery",
+        element: <GalleryPage />,
       },
       {
         path: "/signup",
@@ -31,6 +35,30 @@ export const router = createBrowserRouter([
       {
         path: "/signin",
         element: <SignInPage />,
+      },
+      {
+        path: "/add_food",
+        element: (
+          <PrivateRoute>
+            <AddFoodPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my_foods",
+        element: (
+          <PrivateRoute>
+            <MyFoodsPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my_orders",
+        element: (
+          <PrivateRoute>
+            <MyOrdersPage />
+          </PrivateRoute>
+        ),
       },
     ],
   },

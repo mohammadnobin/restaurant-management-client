@@ -1,9 +1,9 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import UseAuth from "../../hooks/UseAuth";
 import logo from "../../assets/logo.svg";
-import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
+import { FaHome, FaUtensils, FaImages, FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
@@ -20,13 +20,42 @@ const Navbar = () => {
   const navitem = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <NavLink
+          className="flex items-center gap-x-2 text-lg text-steel-gray font-bold "
+          to="/"
+        >
+          <FaHome /> Home
+        </NavLink>
       </li>
       <li>
-        <Link to="/details">All Foods</Link>
+        <NavLink
+          className="flex items-center gap-x-2 text-lg text-steel-gray font-bold "
+          to="/all_foods"
+        >
+          <FaUtensils /> All Foods
+        </NavLink>
       </li>
       <li>
-        <Link to="/">Gallery</Link>
+        <NavLink
+          className="flex items-center gap-x-2 text-lg text-steel-gray font-bold "
+          to="/gallery"
+        >
+          <FaImages /> Gallery
+        </NavLink>
+      </li>
+    </>
+  );
+  const PrivateItem = (
+    <>
+      {" "}
+      <li className=" px-4 bg-orange border-white border text-white font-bold rounded-xl cursor-pointer">
+        <Link to="/add_food">Add Food</Link>
+      </li>
+      <li className=" px-4 bg-orange border-white border text-white font-bold rounded-xl cursor-pointer">
+        <Link to="/my_foods">My Foods</Link>
+      </li>
+      <li className=" px-4 bg-orange border-white border text-white font-bold rounded-xl cursor-pointer">
+        <Link to="/my_orders">My Orders</Link>
       </li>
     </>
   );
@@ -40,13 +69,16 @@ const Navbar = () => {
               {show ? <ImCross size={25} /> : <FaBars size={25} />}
             </button>
           </div>
-          {show&&
-          <div className="absolute top-20 left-0 w-full bg-orange">
-            <ul onClick={()=>setShow(false)} className="text-center text-white space-y-2">
-            {navitem}
-            </ul>
-          </div>
-          }
+          {show && (
+            <div className="absolute top-20 left-0 w-full bg-orange">
+              <ul
+                onClick={() => setShow(false)}
+                className="text-center text-white space-y-2"
+              >
+                {navitem}
+              </ul>
+            </div>
+          )}
           <div className="">
             <Link to="/">
               <img
@@ -76,11 +108,12 @@ const Navbar = () => {
                   </div>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content menu  w-52 p-2 bg-orange"
+                    className="dropdown-content menu space-y-2  w-52 p-2 bg-orange"
                   >
+                    {PrivateItem}
                     <li>
                       <button
-                        className="py-3 px-6 bg-orange text-white font-bold rounded-xl cursor-pointer"
+                        className="py-3 px-6 bg-orange border-white border text-white font-bold rounded-xl cursor-pointer"
                         onClick={handleSignOut}
                       >
                         Log OUt
@@ -108,7 +141,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="">
-            <ul className="flex items-center gap-x-4">{navitem}</ul>
+            <ul className="flex items-center gap-x-6">{navitem}</ul>
           </div>
           <div className="">
             {user ? (
@@ -130,11 +163,9 @@ const Navbar = () => {
                   </div>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content menu  w-52 p-2 bg-orange"
+                    className="dropdown-content menu space-y-2  w-52 p-2 bg-orange"
                   >
-                    <li>
-                      <a>Item 1</a>
-                    </li>
+                    {PrivateItem}
                   </ul>
                 </div>
                 <button

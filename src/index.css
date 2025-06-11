@@ -21,3 +21,7 @@ body {
 .containerr{
   @apply w-10/12 mx-auto lg:w-10/12
 }
+
+a.active {
+  @apply  text-orange border-b-2 border-b-orange
+}
