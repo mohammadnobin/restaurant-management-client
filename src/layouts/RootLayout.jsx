@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useNavigation } from "react-router";
+import { Outlet, ScrollRestoration, useNavigation } from "react-router";
 import Navbar from "../pages/Shared/Navbar";
 import Footer from "../pages/Shared/Footer";
 import Loading from "../pages/Shared/Loading";
@@ -12,6 +12,7 @@ const RootLayout = () => {
       <div className="mt-20">
       {state == "loading" ? <Loading /> : <Outlet />}
       </div>
+      <ScrollRestoration />
       <Footer />
     </div>
   );

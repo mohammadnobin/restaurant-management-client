@@ -4,13 +4,14 @@ import TrendingOrders from "../../components/TrendingOrders/TrendingOrders";
 import TopSellingFoods from "./TopSellingFoods";
 import { toSellingFoods } from "../../api/TopSellingFood";
 import Banner from "./Banner";
+import Loading from "../Shared/Loading";
 
 
 const HomePage = () => {
     return (
         <>
         <Banner />
-            <Suspense>
+            <Suspense fallback={<Loading />}>
                 <TopSellingFoods toSellingFoods={toSellingFoods()} />
             </Suspense>
             <MenuCategory />
