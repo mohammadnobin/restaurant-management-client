@@ -9,7 +9,7 @@ const AddFoodPage = () => {
     const form = e.target;
     const formData = new FormData(form);
     const newFoods = Object.fromEntries(formData.entries());
-    newFoods.parches_count = 0;
+    newFoods.Purchase_count = 0;
 
     fetch(`${import.meta.env.VITE_API_URL}/add_foods`, {
       method: "POST",

@@ -13,15 +13,15 @@ import gallery_9 from '../../assets/gellary/gellary9.png';
 import gallery_10 from '../../assets/gellary/gellary10.jpeg';
 
 const images = [
-  { src: gallery_1, alt: "Image 1" },
-  { src: gallery_2, alt: "Image 2" },
+  { src: gallery_9, alt: "Image 1" },
+  { src: gallery_7, alt: "Image 2" },
   { src: gallery_3, alt: "Image 3" },
   { src: gallery_4, alt: "Image 4" },
   { src: gallery_5, alt: "Image 5" },
   { src: gallery_6, alt: "Image 6" },
-  { src: gallery_7, alt: "Image 7" },
+  { src: gallery_2, alt: "Image 7" },
   { src: gallery_8, alt: "Image 8" },
-  { src: gallery_9, alt: "Image 9" },
+  { src: gallery_1, alt: "Image 9" },
   { src: gallery_10, alt: "Image 10" },
 ];
 
@@ -40,7 +40,7 @@ export default function Gallerydoc() {
         {images.map((img, i) => (
           <div
             key={i}
-            className="w-full aspect-square overflow-hidden rounded shadow-md border border-orange rounded-2xl cursor-pointer"
+            className="w-full aspect-square overflow-hidden  shadow-md border border-orange rounded-2xl cursor-pointer"
             onClick={() => openLightbox(i)}
           >
             <img

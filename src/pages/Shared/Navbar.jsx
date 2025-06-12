@@ -60,7 +60,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="border-b relative z-50 bg-white">
+    <nav className="fixed top-0 z-50 shadow-2xl w-full  bg-white">
       <div className="containerr py-4">
         {/* small devise design */}
         <div className="md:hidden  grid grid-cols-3 items-center justify-between">
@@ -70,10 +70,10 @@ const Navbar = () => {
             </button>
           </div>
           {show && (
-            <div className="absolute top-20 left-0 w-full bg-orange">
+            <div className="absolute top-20 left-0 w-full">
               <ul
                 onClick={() => setShow(false)}
-                className="text-center text-white space-y-2"
+                className=" text-white space-y-2 bg-white flex justify-center flex-col items-center"
               >
                 {navitem}
               </ul>

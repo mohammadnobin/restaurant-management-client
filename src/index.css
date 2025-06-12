@@ -17,6 +17,12 @@ body {
   font-family: "Poppins", sans-serif;
   background-image: url(/src/assets/bodybg.png);
 }
+.pageBannerBg{
+  background-image: url(/src/assets/banner/pagebanner.png);
+}
+.BannerBg{
+  background-image: url(/src/assets/banner/banner1.jpg);
+}
 /* Full Body design */
 .containerr{
   @apply w-10/12 mx-auto lg:w-10/12

@@ -11,6 +11,7 @@ import AddFoodPage from "../pages/AddFoodPage/AddFoodPage";
 import MyFoodsPage from "../pages/MyFoodsPage/MyFoodsPage";
 import MyOrdersPage from "../pages/MyOrdersPage/MyOrdersPage";
 import DetailsPage from "../pages/DetailsPage/DetailsPage";
+import PurchasePage from "../pages/PurchasePage/PurchasePage";
 
 export const router = createBrowserRouter([
   {
@@ -23,13 +24,22 @@ export const router = createBrowserRouter([
       },
       {
         path: "/all_foods",
-        loader:()=> fetch(`${import.meta.env.VITE_API_URL}/all_foods`),
-        hydrateFallbackElement:<h2>this is loading</h2>,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/all_foods`),
+        hydrateFallbackElement: <h2>this is loading</h2>,
         element: <AllFoodsPage />,
       },
       {
-        path: '/single_food/:id',
-        element: <DetailsPage />
+        path: "/single_food/:id",
+        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/food/${params.id}`),
+        hydrateFallbackElement: <h2>this is loading</h2>,
+        element: <DetailsPage />,
+      },
+      {
+        path: '/purchase/:id',
+        loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/food/${params.id}`),
+        element: <PrivateRoute>
+          <PurchasePage />
+        </PrivateRoute>
       },
       {
         path: "/gallery",
