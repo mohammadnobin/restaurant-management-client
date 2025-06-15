@@ -6,7 +6,6 @@ const GalleryPage = () => {
     return (
         <div className='containerr'>
             <PagesBanner title='Gallery' />
-            this is GalleryPage
             <Gallerydoc />
         </div>
     );

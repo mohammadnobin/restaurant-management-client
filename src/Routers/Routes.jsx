@@ -5,7 +5,6 @@ import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import SignInPage from "../pages/SignInPage/SignInPage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
-import GalleryPage from "../pages/Gallery/galleryPage";
 import AllFoodsPage from "../pages/AllFoodsPage/AllFoodsPage";
 import AddFoodPage from "../pages/AddFoodPage/AddFoodPage";
 import MyFoodsPage from "../pages/MyFoodsPage/MyFoodsPage";
@@ -14,6 +13,7 @@ import DetailsPage from "../pages/DetailsPage/DetailsPage";
 import PurchasePage from "../pages/PurchasePage/PurchasePage";
 import Loading from "../pages/Shared/Loading";
 import FoodUpdatePage from "../pages/FoodUpdatePage/FoodUpdatePage";
+import GalleryPage from "../pages/Gallery/GalleryPage";
 
 export const router = createBrowserRouter([
   {

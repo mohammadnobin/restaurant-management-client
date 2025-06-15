@@ -2,6 +2,7 @@ import React from "react";
 import UseAuth from "../../hooks/UseAuth";
 import { useLoaderData } from "react-router";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const FoodUpdatePage = () => {
   const foodData = useLoaderData();
@@ -25,7 +26,11 @@ const FoodUpdatePage = () => {
       .put(`${import.meta.env.VITE_API_URL}/update_food/${_id}`, updateFood)
       .then((res) => {
         if (res.data.modifiedCount) {
-          console.log("all is oky and updated");
+                  Swal.fire({
+                    title: "Good job!",
+                    text: "Successfully Update food",
+                    icon: "success",
+                  });
         }
       });
   };
@@ -107,12 +112,11 @@ const FoodUpdatePage = () => {
             </label>
             <input
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
-              type="number"
+              type="text"
               placeholder="Enter quantity (pieces)"
               name="quantity"
               defaultValue={quantity}
               required
-              min="1"
             />
           </div>
 
@@ -122,7 +126,7 @@ const FoodUpdatePage = () => {
             </label>
             <input
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
-              type="number"
+              type="text"
               placeholder="Enter price in Taka"
               name="price"
               defaultValue={price}

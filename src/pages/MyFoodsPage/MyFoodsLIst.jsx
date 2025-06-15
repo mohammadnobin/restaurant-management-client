@@ -144,3 +144,111 @@ const MyFoodsList = ({ myaddedFood }) => {
 };
 
 export default MyFoodsList;
+
+
+
+//   {
+//     "_id": "8",
+//     "food_name": "Tomato",
+//     "food_image": "https://i.ibb.co/SQzFpJG/tomato.jpg",
+//     "category": "vegetables",
+//     "origin": "Bangladesh",
+//     "quantity": 40,
+//     "price": 70,
+//     "description": "Fresh red tomatoes for cooking.",
+//     "name": "Rubel",
+//     "email": "rubel@gmail.com",
+//     "purchase_count": 0
+//   },
+//   {
+//     "_id": "10",
+//     "food_name": "Samosa",
+//     "food_image": "https://i.ibb.co/BfW4Mf6/samosa.jpg",
+//     "category": "snacks",
+//     "origin": "India",
+//     "quantity": 35,
+//     "price": 30,
+//     "description": "Spicy samosas filled with potatoes.",
+//     "name": "Lamia",
+//     "email": "lamia@gmail.com",
+//     "purchase_count": 0
+//   },
+//   {
+//     "_id": "11",
+//     "food_name": "Coca-Cola",
+//     "food_image": "https://i.ibb.co/sK4hZrr/coke.jpg",
+//     "category": "drinks",
+//     "origin": "USA",
+//     "quantity": 60,
+//     "price": 35,
+//     "description": "Chilled Coca-Cola soft drink.",
+//     "name": "Rony",
+//     "email": "rony@gmail.com",
+//     "purchase_count": 0
+//   },
+//   {
+//     "_id": "12",
+//     "food_name": "Vanilla Ice Cream",
+//     "food_image": "https://i.ibb.co/VYM0tkM/ice-cream.jpg",
+//     "category": "desserts",
+//     "origin": "Italy",
+//     "quantity": 22,
+//     "price": 120,
+//     "description": "Creamy vanilla flavored ice cream.",
+//     "name": "Amit",
+//     "email": "amit@gmail.com",
+//     "purchase_count": 0
+//   },
+//   {
+//     "_id": "13",
+//     "food_name": "Mango",
+//     "food_image": "https://i.ibb.co/FbxThLM/mango.jpg",
+//     "category": "fruits",
+//     "origin": "Bangladesh",
+//     "quantity": 45,
+//     "price": 80,
+//     "description": "Juicy mangoes from Rajshahi.",
+//     "name": "Noman",
+//     "email": "noman@gmail.com",
+//     "purchase_count": 0
+//   },
+//   {
+//     "_id": "14",
+//     "food_name": "Spinach",
+//     "food_image": "https://i.ibb.co/ZYn0VTC/spinach.jpg",
+//     "category": "vegetables",
+//     "origin": "Bangladesh",
+//     "quantity": 28,
+//     "price": 45,
+//     "description": "Green spinach rich in iron.",
+//     "name": "Sadia",
+//     "email": "sadia@gmail.com",
+//     "purchase_count": 0
+//   },
+//   {
+//     "_id": "16",
+//     "food_name": "Nachos",
+//     "food_image": "https://i.ibb.co/wQnZKnR/nachos.jpg",
+//     "category": "snacks",
+//     "origin": "Mexico",
+//     "quantity": 22,
+//     "price": 200,
+//     "description": "Crispy nachos with cheese dip.",
+//     "name": "Karim",
+//     "email": "karim@gmail.com",
+//     "purchase_count": 0
+//   },
+//   {
+//     "_id": "17",
+//     "food_name": "Cold Coffee",
+//     "food_image": "https://i.ibb.co/wKDgFJt/cold-coffee.jpg",
+//     "category": "drinks",
+//     "origin": "Italy",
+//     "quantity": 15,
+//     "price": 180,
+//     "description": "Iced coffee with milk and sugar.",
+//     "name": "Arifa",
+//     "email": "arifa@gmail.com",
+//     "purchase_count": 0
+//   }
+// ]

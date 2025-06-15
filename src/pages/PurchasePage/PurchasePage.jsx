@@ -33,7 +33,7 @@
 //       date: Date.now()
 //     };
     
-//     // if (user?.email === email) return alert('tumr product')
+    // if (user?.email === email) return alert('tumr product')
 //       console.log(orderData)
 //     axios.post(`${import.meta.env.VITE_API_URL}/order/${_id}`,orderData)
 //     .then(res => console.log(res.data))
@@ -254,6 +254,8 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import UseAuth from '../../hooks/UseAuth';
 import axios from 'axios';
+import PagesBanner from '../Shared/PagesBanner';
+import Swal from 'sweetalert2';
 
 const PurchasePage = () => {
   const { user } = UseAuth();
@@ -262,18 +264,18 @@ const PurchasePage = () => {
   const {
     food_name,
     price,
-    quantity: initialQuantity,
+    quantity,
     food_image,
     _id,
-    purchase_count: initialPurchaseCount,
+    email,
+    purchase_count,
   } = data || {};
 
-  const [quantity, setQuantity] = useState(initialQuantity);
-  const [purchaseCount, setPurchaseCount] = useState(initialPurchaseCount);
+  const [quantityNum, setQuantity] = useState(quantity);
+  const [purchaseCount, setPurchaseCount] = useState(purchase_count);
 
   const handlePurchase = (e) => {
     e.preventDefault();
-
     const orderData = {
       food_name,
       food_image,
@@ -284,23 +286,36 @@ const PurchasePage = () => {
       buyer_email: user?.email,
       date: Date.now(),
     };
+    // if (user?.email === email) return alert('tumr product')
+
+    if (user?.email === email) {
+  return Swal.fire({
+    icon: 'warning',
+    title: 'Oops!',
+    text: 'এটা আপনার নিজের প্রোডাক্ট, আপনি এটা অর্ডার করতে পারবেন না!',
+    confirmButtonColor: '#f97316', // orange
+  });
+}
+
 
     axios.post(`${import.meta.env.VITE_API_URL}/order/${_id}`, orderData)
       .then((res) => {
         if (res.data?.acknowledged || res.data?.modifiedCount > 0) {
-          setQuantity((prev) => prev - 1);
-          setPurchaseCount((prev) => prev + 1);
+             setPurchaseCount(purchaseCount + 1);
+    setQuantity(quantityNum -1)
+    console.log(res.data)
         }
       })
-      .catch((err) => {
-        console.error('Purchase failed:', err);
-        alert('this is your products');
-      });
+    //   // .catch((err) => {
+    //   //   console.error('Purchase failed:', err);
+    //   //   alert('this is your products');
+    //   // });
   };
 
   return (
-    <div className="max-w-4xl  mx-auto mt-32 px-4 md:px-6 lg:px-10">
-      <div className="bg-white border rounded-2xl shadow-lg overflow-hidden md:flex">
+    <div className="containerr px-4 md:px-6 lg:px-10">
+      <PagesBanner title='PurchasePage' />
+      <div className="bg-white border max-w-4xl  mx-auto rounded-2xl shadow-lg overflow-hidden md:flex">
         <div className="md:w-1/2">
           <img
             src={food_image}
@@ -333,7 +348,7 @@ const PurchasePage = () => {
               <label className="block text-sm font-medium text-gray-700">Available Quantity</label>
               <input
                 type="text"
-                value={quantity}
+                value={quantityNum}
                 readOnly
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
               />
@@ -372,7 +387,7 @@ const PurchasePage = () => {
             ) : (
               <button
                 type="submit"
-                className="w-full bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+                className="w-full cursor-pointer bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition duration-300"
               >
                 Purchase Now
               </button>
@@ -385,3 +400,5 @@ const PurchasePage = () => {
 };
 
 export default PurchasePage;
+
+

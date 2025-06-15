@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router';
 import { AiFillStar } from 'react-icons/ai';
 import { MdCategory, MdOutlineAttachMoney } from 'react-icons/md';
 import { FaMapMarkerAlt, FaShoppingCart } from 'react-icons/fa';
+import PagesBanner from '../Shared/PagesBanner';
 
 const DetailsPage = () => {
   const data = useLoaderData();
@@ -21,8 +22,9 @@ const DetailsPage = () => {
   } = data;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center bg-white shadow-md rounded-3xl p-8">
+    <div className="containerr px-4 ">
+      <PagesBanner title='Details' />
+      <div className="grid grid-cols-1 max-w-6xl mx-auto md:grid-cols-2 gap-10 items-center bg-white shadow-md rounded-3xl p-8">
         <img
           src={food_image}
           alt={food_name}
