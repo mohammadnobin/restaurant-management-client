@@ -23,6 +23,7 @@ const DetailsPage = () => {
 
   return (
     <div className="containerr px-4 ">
+      <title>Details Page</title>
       <PagesBanner title='Details' />
       <div className="grid grid-cols-1 max-w-6xl mx-auto md:grid-cols-2 gap-10 items-center bg-white shadow-md rounded-3xl p-8">
         <img

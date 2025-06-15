@@ -8,7 +8,7 @@ const Loading = () => {
       <Lottie
         animationData={loadingAnimation}
         loop={true}
-        className="w-[500px] h-[500px]"
+        className="w-full h-[500px]"
       />
     </div>
   );

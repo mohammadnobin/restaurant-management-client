@@ -311,14 +311,11 @@ const PurchasePage = () => {
     console.log(res.data)
         }
       })
-    //   // .catch((err) => {
-    //   //   console.error('Purchase failed:', err);
-    //   //   alert('this is your products');
-    //   // });
   };
 
   return (
     <div className="containerr px-4 md:px-6 lg:px-10">
+      <title>Purchase Page</title>
       <PagesBanner title='PurchasePage' />
       <div className="bg-white border max-w-4xl  mx-auto rounded-2xl shadow-lg overflow-hidden md:flex">
         <div className="md:w-1/2">

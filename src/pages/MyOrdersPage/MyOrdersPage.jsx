@@ -7,10 +7,13 @@ import Loading from '../Shared/Loading';
 
 const MyOrdersPage = () => {
     const {user}= UseAuth()
+    console.log(user)
     return (
         <div>
             <Suspense fallback={<Loading /> }>
-                <OrderList myOrders={myOrders(user?.email)} />
+                <OrderList myOrders={myOrders(user?.email,
+                    user.accessToken
+                )} />
             </Suspense>
         </div>
     );

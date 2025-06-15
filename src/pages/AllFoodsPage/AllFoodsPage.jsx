@@ -13,6 +13,7 @@ const AllFoodsPage = () => {
   },[search])
   return (
     <div className="containerr">
+      <title>All Foods</title>
       <PagesBanner title="All foods " />
             {/* ✅ Search Input */}
       <div className="max-w-md mx-auto mb-8">

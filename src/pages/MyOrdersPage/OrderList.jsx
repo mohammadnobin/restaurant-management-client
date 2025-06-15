@@ -6,8 +6,7 @@ import Swal from "sweetalert2";
 
 const OrderList = ({ myOrders }) => {
   const data = use(myOrders);
-  console.log(data.data);
-  const [orders, setOders] = useState(data.data);
+  const [orders, setOders] = useState(data);
 
   const handleDelete = (id) => {
     console.log(id);
