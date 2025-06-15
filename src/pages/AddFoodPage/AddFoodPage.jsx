@@ -286,7 +286,7 @@ const AddFoodPage = () => {
 
           <div className="flex flex-col">
             <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
-              Price (৳)
+              Price 
             </label>
             <input
               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
