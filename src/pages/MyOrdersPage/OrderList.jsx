@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment/moment";
 import React, { use, useState } from "react";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 
@@ -47,6 +48,9 @@ const OrderList = ({ myOrders }) => {
                   <th className="px-4 py-3  text-base text-center font-semibold">
                     Order Quantity
                   </th>
+                  <th className="px-4 py-3  text-base text-center font-semibold">
+                    Order Time
+                  </th>
                   <th className="px-4 py-3 text-center text-base font-semibold">
                     Action
                   </th>
@@ -66,6 +70,9 @@ const OrderList = ({ myOrders }) => {
                     <td className="px-4 py-3">${food.price}</td>
                     <td className="px-4 py-3 text-center">
                       {food.order_quantity}
+                    </td>
+                    <td className="px-4 py-3 text-center">
+                      {moment(food.date).format(' h:mm A, MMMM Do YYYY')}
                     </td>
                     <td className="px-4 py-3 text-center">
                       <button
@@ -103,6 +110,9 @@ const OrderList = ({ myOrders }) => {
                     </p>
                     <p className="text-sm text-gray-700">
                       Quantity: {food.order_quantity}
+                    </p>
+                    <p className="text-sm text-gray-700">
+                      Order Time:  {moment(food.date).format(' h:mm A, MMMM Do YYYY')}
                     </p>
                   </div>
                 </div>
