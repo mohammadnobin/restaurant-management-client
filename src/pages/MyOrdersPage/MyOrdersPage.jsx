@@ -1,17 +1,17 @@
 import React, { Suspense } from 'react';
 import OrderList from './OrderList';
-import { myOrders } from '../../api/MyOrders';
 import UseAuth from '../../hooks/UseAuth';
 import Loading from '../Shared/Loading';
+import useOrderApi from '../../api/useOrderApi';
 
 
 const MyOrdersPage = () => {
     const {user}= UseAuth()
-    console.log(user)
+    const {myOrdersPromise} = useOrderApi()
     return (
         <div>
             <Suspense fallback={<Loading /> }>
-                <OrderList myOrders={myOrders(user?.email,
+                <OrderList myOrders={myOrdersPromise(user?.email,
                     user.accessToken
                 )} />
             </Suspense>

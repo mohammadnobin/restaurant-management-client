@@ -7,6 +7,7 @@ import { FaHome, FaUtensils, FaImages, FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
+  console.log(user)
   const [show, setShow] = useState(false);
   const handleSignOut = () => {
     signOutUser()
