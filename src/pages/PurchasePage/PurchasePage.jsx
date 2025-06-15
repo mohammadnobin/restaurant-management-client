@@ -301,6 +301,11 @@ const PurchasePage = () => {
     axios.post(`${import.meta.env.VITE_API_URL}/order/${_id}`, orderData)
       .then((res) => {
         if (res.data?.acknowledged || res.data?.modifiedCount > 0) {
+                    Swal.fire({
+                      title: "Good job!",
+                      text: "Order successfully",
+                      icon: "success",
+                    });
              setPurchaseCount(purchaseCount + 1);
     setQuantity(quantityNum -1)
     console.log(res.data)

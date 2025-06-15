@@ -2,6 +2,7 @@ import axios from "axios";
 import moment from "moment/moment";
 import React, { use, useState } from "react";
 import { MdOutlineDeleteOutline } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const OrderList = ({ myOrders }) => {
   const data = use(myOrders);
@@ -10,15 +11,60 @@ const OrderList = ({ myOrders }) => {
 
   const handleDelete = (id) => {
     console.log(id);
-    axios
-      .delete(`${import.meta.env.VITE_API_URL}/delete_food/${id}`)
-      .then((res) => {
-        if (res.data.deletedCount) {
-          alert("this is deleted");
-        }
-         const remainingTips = orders.filter((tip) => tip._id !== id);
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete(`${import.meta.env.VITE_API_URL}/delete_order/${id}`)
+            .then((res) => {
+              if (res.data.deletedCount) {
+                swalWithBootstrapButtons.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+                const remainingTips = orders.filter((order) => order._id !== id);
                 setOders(remainingTips);
+              }
+            });
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your imaginary file is safe :)",
+            icon: "error",
+          });
+        }
       });
+
+    // axios
+    //   .delete(`${import.meta.env.VITE_API_URL}/delete_order/${id}`)
+    //   .then((res) => {
+    //     if (res.data.deletedCount) {
+    //       alert("this is deleted");
+    //     }
+    //      const remainingTips = orders.filter((tip) => tip._id !== id);
+    //             setOders(remainingTips);
+    //   });
   };
 
   return (
@@ -72,7 +118,7 @@ const OrderList = ({ myOrders }) => {
                       {food.order_quantity}
                     </td>
                     <td className="px-4 py-3 text-center">
-                      {moment(food.date).format(' h:mm A, MMMM Do YYYY')}
+                      {moment(food.date).format(" h:mm A, MMMM Do YYYY")}
                     </td>
                     <td className="px-4 py-3 text-center">
                       <button
@@ -112,7 +158,8 @@ const OrderList = ({ myOrders }) => {
                       Quantity: {food.order_quantity}
                     </p>
                     <p className="text-sm text-gray-700">
-                      Order Time:  {moment(food.date).format(' h:mm A, MMMM Do YYYY')}
+                      Order Time:{" "}
+                      {moment(food.date).format(" h:mm A, MMMM Do YYYY")}
                     </p>
                   </div>
                 </div>

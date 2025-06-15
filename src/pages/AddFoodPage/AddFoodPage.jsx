@@ -32,7 +32,10 @@ const AddFoodPage = () => {
   };
   return (
     <div className="containerr">
-      <div className="lg:w-2/3 mx-auto my-24 p-8 border border-orange rounded-2xl ">
+            <h2 className="text-2xl md:text-3xl font-semibold text-orange-600 pt-10 text-center">
+        🍽️  You Can add Food
+      </h2>
+      <div className="lg:w-2/3 mx-auto mt-5 p-8 border border-orange rounded-2xl ">
         <form
           onSubmit={handleFoodAdd}
           className="md:grid md:space-y-0 space-y-4 grid-cols-2  gap-6"
