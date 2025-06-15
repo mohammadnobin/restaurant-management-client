@@ -9,7 +9,7 @@ const TrendingOrders = () => {
   return (
     <div className="containerr">
       <h2 className="font-semibold text-3xl pb-10 text-center ">
-        Trending orders
+        Trending Foods
       </h2>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-y-14 gap-x-6">
         <TrendingCard price='7.49' title='Mushroom' image={masrum1} />

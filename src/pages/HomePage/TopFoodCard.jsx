@@ -1,16 +1,15 @@
 import React from 'react';
-import foods1 from '../../assets/foods/foods1.jpg';
 import { Link } from 'react-router';
 import { FaStar } from 'react-icons/fa';
 
 const TopFoodCard = ({ data }) => {
-  const {_id, quantity, price, food_name, food_image, category, Purchase_count } = data;
+  const {_id, quantity, price, food_name, food_image, category, purchase_count } = data;
 
   return (
     <div className="bg-white rounded-3xl shadow-lg overflow-hidden transform hover:-translate-y-2 hover:shadow-xl transition duration-300 p-4">
       <img
         className="w-full h-64 object-cover rounded-2xl"
-        src={foods1}
+        src={food_image}
         alt={food_name}
       />
 
@@ -23,7 +22,7 @@ const TopFoodCard = ({ data }) => {
             {category}
           </span>
           <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full">
-            Sold: {Purchase_count}
+            Sold: {purchase_count}
           </span>
         </div>
         <div className="flex justify-between text-sm text-gray-600 mt-4">
