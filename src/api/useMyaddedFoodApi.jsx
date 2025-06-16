@@ -7,8 +7,13 @@ const useMyaddedFoodApi = () => {
         return axiosSecure.get(`/my_foods?email=${email}`)
         .then(res => res.data)
     }
+        const addFoodPromise = (newFoods) => {
+        return axiosSecure.post('/add_foods', newFoods)
+            .then(res => res.data);
+    };
     return {
-        myAddedFoodsPromise
+        myAddedFoodsPromise,
+        addFoodPromise
     }
 };
 

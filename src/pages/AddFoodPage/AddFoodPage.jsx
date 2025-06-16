@@ -1,26 +1,39 @@
 import React from "react";
 import UseAuth from "../../hooks/UseAuth";
 import Swal from "sweetalert2";
+import useMyaddedFoodApi from "../../api/useMyaddedFoodApi";
 
 const AddFoodPage = () => {
   const { user } = UseAuth();
+  const {addFoodPromise} = useMyaddedFoodApi()
   const handleFoodAdd = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const newFoods = Object.fromEntries(formData.entries());
-    console.log(newFoods);
     newFoods.Purchase_count = 0;
 
-    fetch(`${import.meta.env.VITE_API_URL}/add_foods`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newFoods),
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    // fetch(`${import.meta.env.VITE_API_URL}/add_foods`, {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(newFoods),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.insertedId) {
+    //       Swal.fire({
+    //         title: "Good job!",
+    //         text: "successfully added food",
+    //         icon: "success",
+    //       });
+    //     }
+    //   });
+
+
+    addFoodPromise(newFoods)
+      .then(data => {
         if (data.insertedId) {
           Swal.fire({
             title: "Good job!",
@@ -28,7 +41,16 @@ const AddFoodPage = () => {
             icon: "success",
           });
         }
+      })
+      .catch(err => {
+        console.error(err);
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to add food",
+          icon: "error",
+        });
       });
+
   };
   return (
     <div className="containerr">

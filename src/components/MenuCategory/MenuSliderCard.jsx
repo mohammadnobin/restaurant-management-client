@@ -3,7 +3,7 @@ import { RiArrowRightSLine } from "react-icons/ri";
 
 const MenuSliderCard = (props) => {
   return (
-    <div className="p-6 mx-4  border-2 dark:border-white  shadow-sm bg-white group  dark:bg-[#ef9355] hover:bg-[#ef9355] duration-300 rounded-2xl text-center">
+    <div className="p-6 mx-4  border-2 border-white  shadow-sm bg-white group  dark:bg-[#ef9355] hover:bg-[#ef9355] duration-300 rounded-2xl text-center">
       <img className="w-[150px] mx-auto" src={props.img} alt="menuslider1" />
       <p className="border-b group-hover:border-b-white  duration-300 pb-4 lg:font-bold lg:text-2xl group-hover:text-white    ">
         {props.title}

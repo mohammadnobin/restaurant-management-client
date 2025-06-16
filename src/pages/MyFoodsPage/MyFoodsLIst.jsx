@@ -169,19 +169,19 @@ const MyFoodsList = ({ myaddedFood }) => {
                       <div className="flex justify-center gap-3">
                         <Link
                           to={`/single_food/${food._id}`}
-                          className="dark:bg-black dark:text-white dark:border-white border bg-green text-white p-2 rounded-lg transition"
+                          className="dark:bg-black dark:text-white dark:border-white border bg-dark-black text-white p-2 rounded-lg transition"
                         >
                           <FaEye className="text-xl" />
                         </Link>
                         <button
                           onClick={() => handleDelete(food._id)}
-                          className="dark:bg-black dark:text-white dark:border-white border bg-green cursor-pointer text-white p-2 rounded-lg transition"
+                          className="dark:bg-black dark:text-white dark:border-white border bg-dark-black cursor-pointer text-white p-2 rounded-lg transition"
                         >
                           <MdDelete className="text-xl" />
                         </button>
                         <Link
                           to={`/update_food/${food._id}`}
-                          className="dark:bg-black dark:text-white dark:border-white border bg-green text-white p-2 rounded-lg transition"
+                          className="dark:bg-black dark:text-white dark:border-white border bg-dark-black text-white p-2 rounded-lg transition"
                         >
                           <FaEdit className="text-xl" />
                         </Link>

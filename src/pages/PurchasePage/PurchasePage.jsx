@@ -249,13 +249,14 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import UseAuth from "../../hooks/UseAuth";
-import axios from "axios";
 import PagesBanner from "../Shared/PagesBanner";
 import Swal from "sweetalert2";
+import useOrderApi from "../../api/useOrderApi";
 
 const PurchasePage = () => {
   const { user } = UseAuth();
   const data = useLoaderData();
+  const { placeOrder } = useOrderApi();
 
   const { food_name, price, quantity, food_image, _id, email, purchase_count } =
     data || {};
@@ -280,23 +281,29 @@ const PurchasePage = () => {
         icon: "warning",
         title: "Oops!",
         text: "এটা আপনার নিজের প্রোডাক্ট, আপনি এটা অর্ডার করতে পারবেন না!",
-        confirmButtonColor: "#f97316", // orange
+        confirmButtonColor: "#f97316", 
       });
     }
-
-    axios
-      .post(`${import.meta.env.VITE_API_URL}/order/${_id}`, orderData)
-      .then((res) => {
-        if (res.data?.acknowledged || res.data?.modifiedCount > 0) {
+    placeOrder(_id, orderData)
+      .then(data => {
+        if (data?.acknowledged || data?.modifiedCount > 0) {
           Swal.fire({
             title: "Good job!",
             text: "Order successfully",
             icon: "success",
           });
-          setPurchaseCount(purchaseCount + 1);
-          setQuantity(quantityNum - 1);
-          console.log(res.data);
+          setPurchaseCount(prev => prev + 1);
+          setQuantity(prev => prev - 1);
+          console.log(data);
         }
+      })
+      .catch(err => {
+        console.error(err);
+        Swal.fire({
+          title: "Error!",
+          text: "Order failed",
+          icon: "error",
+        });
       });
   };
 
