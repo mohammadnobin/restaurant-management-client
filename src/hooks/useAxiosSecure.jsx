@@ -23,9 +23,9 @@ const useAxiosSecure = () => {
         signOutUser()
           .then(() => {
             Swal.fire({
-              title: "Good job!",
+             title: "Oops...",
               text: "sign out user for 401 status code",
-              icon: "success",
+               icon: "error",
             });
           })
           .catch((err) => {

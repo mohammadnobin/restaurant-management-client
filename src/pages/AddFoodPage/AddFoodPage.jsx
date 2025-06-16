@@ -13,24 +13,6 @@ const AddFoodPage = () => {
     const newFoods = Object.fromEntries(formData.entries());
     newFoods.Purchase_count = 0;
 
-    // fetch(`${import.meta.env.VITE_API_URL}/add_foods`, {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(newFoods),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.insertedId) {
-    //       Swal.fire({
-    //         title: "Good job!",
-    //         text: "successfully added food",
-    //         icon: "success",
-    //       });
-    //     }
-    //   });
-
 
     addFoodPromise(newFoods)
       .then(data => {

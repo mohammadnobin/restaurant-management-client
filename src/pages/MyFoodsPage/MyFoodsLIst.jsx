@@ -3,9 +3,11 @@ import { FaEdit, FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import useMyaddedFoodApi from "../../api/useMyaddedFoodApi";
 
 const MyFoodsList = ({ myaddedFood }) => {
   const data = use(myaddedFood);
+  const { deleteFoods } = useMyaddedFoodApi();
 
   const [singleFood, setSingleFood] = useState(data);
 
@@ -29,23 +31,19 @@ const MyFoodsList = ({ myaddedFood }) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          fetch(`${import.meta.env.VITE_API_URL}/delete_food/${id}`, {
-            method: "DELETE",
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.deletedCount) {
-                swalWithBootstrapButtons.fire({
-                  title: "Deleted!",
-                  text: "Your file has been deleted.",
-                  icon: "success",
-                });
-                const remainingTips = singleFood.filter(
-                  (food) => food._id !== id
-                );
-                setSingleFood(remainingTips);
-              }
-            });
+          deleteFoods(id).then((data) => {
+            if (data.deletedCount) {
+              swalWithBootstrapButtons.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              const remainingTips = singleFood.filter(
+                (food) => food._id !== id
+              );
+              setSingleFood(remainingTips);
+            }
+          });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -93,7 +91,10 @@ const MyFoodsList = ({ myaddedFood }) => {
               </thead>
               <tbody className="divide-y divide-orange-100">
                 {singleFood.map((food) => (
-                  <tr key={food._id} className="hover:bg-orange-50 hover:text-black transition">
+                  <tr
+                    key={food._id}
+                    className="hover:bg-orange-50 hover:text-black transition"
+                  >
                     <td className="px-4 py-3">
                       <img
                         src={food.food_image}
@@ -158,26 +159,26 @@ const MyFoodsList = ({ myaddedFood }) => {
                   </div>
                 </div>
                 <div className="text-right">
-                             <div className="flex justify-center gap-3">
-                        <Link
-                          to={`/single_food/${food._id}`}
-                          className="dark:bg-black dark:text-white dark:border-white border bg-dark-black text-white p-2 rounded-lg transition"
-                        >
-                          <FaEye className="text-xl" />
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(food._id)}
-                          className="dark:bg-black dark:text-white dark:border-white border bg-dark-black cursor-pointer text-white p-2 rounded-lg transition"
-                        >
-                          <MdDelete className="text-xl" />
-                        </button>
-                        <Link
-                          to={`/update_food/${food._id}`}
-                          className="dark:bg-black dark:text-white dark:border-white border bg-dark-black text-white p-2 rounded-lg transition"
-                        >
-                          <FaEdit className="text-xl" />
-                        </Link>
-                      </div>
+                  <div className="flex justify-center gap-3">
+                    <Link
+                      to={`/single_food/${food._id}`}
+                      className="dark:bg-black dark:text-white dark:border-white border bg-dark-black text-white p-2 rounded-lg transition"
+                    >
+                      <FaEye className="text-xl" />
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(food._id)}
+                      className="dark:bg-black dark:text-white dark:border-white border bg-dark-black cursor-pointer text-white p-2 rounded-lg transition"
+                    >
+                      <MdDelete className="text-xl" />
+                    </button>
+                    <Link
+                      to={`/update_food/${food._id}`}
+                      className="dark:bg-black dark:text-white dark:border-white border bg-dark-black text-white p-2 rounded-lg transition"
+                    >
+                      <FaEdit className="text-xl" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}

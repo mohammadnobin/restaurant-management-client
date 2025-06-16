@@ -1,11 +1,12 @@
 import React from "react";
 import UseAuth from "../../hooks/UseAuth";
 import { useLoaderData } from "react-router";
-import axios from "axios";
 import Swal from "sweetalert2";
+import useMyaddedFoodApi from "../../api/useMyaddedFoodApi";
 
 const FoodUpdatePage = () => {
   const foodData = useLoaderData();
+  const {updateFoodPromise} = useMyaddedFoodApi()
   const {
     _id,
     quantity,
@@ -22,17 +23,42 @@ const FoodUpdatePage = () => {
     const form = e.target;
     const formData = new FormData(form);
     const updateFood = Object.fromEntries(formData.entries());
-    axios
-      .put(`${import.meta.env.VITE_API_URL}/update_food/${_id}`, updateFood)
-      .then((res) => {
-        if (res.data.modifiedCount) {
-          Swal.fire({
-            title: "Good job!",
-            text: "Successfully Update food",
-            icon: "success",
-          });
-        }
+    // axios
+    //   .put(`${import.meta.env.VITE_API_URL}/update_food/${_id}`, updateFood)
+    //   .then((res) => {
+    //     if (res.data.modifiedCount) {
+    //       Swal.fire({
+    //         title: "Good job!",
+    //         text: "Successfully Update food",
+    //         icon: "success",
+    //       });
+    //     }
+    //   });
+    updateFoodPromise(_id, updateFood)
+  .then((res) => {
+    if (res.modifiedCount) {
+      Swal.fire({
+        title: "Good job!",
+        text: "Successfully Updated food",
+        icon: "success",
       });
+    } else {
+      Swal.fire({
+        title: "No changes!",
+        text: "Food info unchanged.",
+        icon: "info",
+      });
+    }
+  })
+  .catch((err) => {
+    console.error(err);
+    Swal.fire({
+      title: "Error!",
+      text: "Something went wrong while updating.",
+      icon: "error",
+    });
+  });
+
   };
   return (
     <div className="containerr pt-14">

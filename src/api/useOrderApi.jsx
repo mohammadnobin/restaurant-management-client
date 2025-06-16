@@ -11,10 +11,14 @@ const useOrderApi = () => {
   const placeOrder = (id, orderData) => {
     return axiosSecure.post(`/order/${id}`, orderData).then((res) => res.data);
   };
-//   const deleteOrder = ()
+  const deleteOrder = (id)=>{
+    return axiosSecure.delete(`/delete_order/${id}`)
+    .then(res=> res.data)
+  }
   return {
     myOrdersPromise,
     placeOrder,
+    deleteOrder
   };
 };
 

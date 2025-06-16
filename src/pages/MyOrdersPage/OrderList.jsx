@@ -1,12 +1,13 @@
-import axios from "axios";
 import moment from "moment/moment";
 import React, { use, useState } from "react";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Swal from "sweetalert2";
+import useOrderApi from "../../api/useOrderApi";
 
 const OrderList = ({ myOrders }) => {
   const data = use(myOrders);
   const [orders, setOders] = useState(data);
+  const {deleteOrder} = useOrderApi()
 
   const handleDelete = (id) => {
 
@@ -29,10 +30,9 @@ const OrderList = ({ myOrders }) => {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          axios
-            .delete(`${import.meta.env.VITE_API_URL}/delete_order/${id}`)
+         deleteOrder(id)
             .then((res) => {
-              if (res.data.deletedCount) {
+              if (res.deletedCount) {
                 swalWithBootstrapButtons.fire({
                   title: "Deleted!",
                   text: "Your file has been deleted.",
