@@ -1,6 +1,7 @@
 import { FcGoogle } from "react-icons/fc";
 import UseAuth from "../../hooks/UseAuth";
 import { useLocation, useNavigate } from "react-router";
+import Swal from "sweetalert2";
 const SocialLogIn = () => {
   const { googleSignIn } = UseAuth();
   const location = useLocation();
@@ -9,11 +10,19 @@ const SocialLogIn = () => {
   const handleGoogleSignIng = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result);
+        Swal.fire({
+            title: "Good job!",
+            text:'Sign In Successfully',
+            icon: "success",
+          });
         navigate(locaFrom);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: err,
+          });
       });
   };
   return (

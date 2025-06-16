@@ -24,7 +24,7 @@ const AllFoodsPage = () => {
               onChange={(e)=>setSearch(e.target.value)}
             />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {allFoods.map((item) => (
           <TopFoodCard key={item._id} data={item} />
         ))}

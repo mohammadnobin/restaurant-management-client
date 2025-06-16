@@ -1,59 +1,3 @@
-// import React, { use } from 'react';
-// import { FaEdit } from "react-icons/fa";
-// import { Link } from 'react-router';
-
-// const MyFoodsList = ({ myaddedFood }) => {
-//     const data = use(myaddedFood)
-//   return (
-//     <div className="p-6 overflow-x-auto">
-//       <h2 className="text-xl font-bold mb-4 text-orange-600">🍽️ My Added Foods</h2>
-
-//       {data?.length === 0 ? (
-//         <p className="text-gray-500">No food items added yet.</p>
-//       ) : (
-//         <table className="min-w-full bg-white border border-orange-300 rounded shadow-md">
-//           <thead className="bg-orange-100 text-orange-800">
-//             <tr>
-//               <th className="px-4 py-3 border-b text-left">Image</th>
-//               <th className="px-4 py-3 border-b text-left">Name</th>
-//               <th className="px-4 py-3 border-b text-left">Price</th>
-//               <th className="px-4 py-3 border-b text-left">Quantity</th>
-//               <th className="px-4 py-3 border-b text-center">Action</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {data.map((food) => (
-//               <tr key={food._id} className="hover:bg-orange-50 transition">
-//                 <td className="px-4 py-3 border-b">
-//                   <img
-//                     src={food.food_image}
-//                     alt={food.food_name}
-//                     className="w-16 h-16 object-cover rounded"
-//                   />
-//                 </td>
-//                 <td className="px-4 py-3 border-b">{food.food_name}</td>
-//                 <td className="px-4 py-3 border-b">${food.price}</td>
-//                 <td className="px-4 py-3 border-b">{food.quantity}</td>
-//                 <td className="px-4 py-3 border-b text-center">
-//                   <Link to={`/update_food/${food._id}`}>
-//                   <button
-//                     className="inline-flex items-center gap-1 px-3 py-1 bg-orange-500 text-white rounded hover:bg-orange-600 text-sm"
-//                   >
-//                     <FaEdit /> Update
-//                   </button>
-//                   </Link>
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default MyFoodsList;
-
 import React, { use, useState } from "react";
 import { FaEdit, FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -161,11 +105,6 @@ const MyFoodsList = ({ myaddedFood }) => {
                     <td className="px-4 py-3">${food.price}</td>
                     <td className="px-4 py-3">{food.quantity}</td>
                     <td className="px-4 py-3 text-center">
-                      {/* <Link to={`/update_food/${food._id}`}>
-                        <button className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition">
-                          <FaEdit /> Update
-                        </button>
-                      </Link> */}
                       <div className="flex justify-center gap-3">
                         <Link
                           to={`/single_food/${food._id}`}
@@ -219,11 +158,26 @@ const MyFoodsList = ({ myaddedFood }) => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <Link to={`/update_food/${food._id}`}>
-                    <button className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm rounded-md transition">
-                      <FaEdit /> Update
-                    </button>
-                  </Link>
+                             <div className="flex justify-center gap-3">
+                        <Link
+                          to={`/single_food/${food._id}`}
+                          className="dark:bg-black dark:text-white dark:border-white border bg-dark-black text-white p-2 rounded-lg transition"
+                        >
+                          <FaEye className="text-xl" />
+                        </Link>
+                        <button
+                          onClick={() => handleDelete(food._id)}
+                          className="dark:bg-black dark:text-white dark:border-white border bg-dark-black cursor-pointer text-white p-2 rounded-lg transition"
+                        >
+                          <MdDelete className="text-xl" />
+                        </button>
+                        <Link
+                          to={`/update_food/${food._id}`}
+                          className="dark:bg-black dark:text-white dark:border-white border bg-dark-black text-white p-2 rounded-lg transition"
+                        >
+                          <FaEdit className="text-xl" />
+                        </Link>
+                      </div>
                 </div>
               </div>
             ))}

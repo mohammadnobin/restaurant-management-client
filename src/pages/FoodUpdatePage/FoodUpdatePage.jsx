@@ -79,19 +79,19 @@ const FoodUpdatePage = () => {
             <select
               id="category"
               name="category"
-              className="border-orange text-steel-gray border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white "
               defaultValue={category}
               required
             >
               <option value="" disabled>
                 Select a category
               </option>
-              <option value="fruits">Fruits</option>
-              <option value="vegetables">Vegetables</option>
-              <option value="meat">Meat</option>
-              <option value="snacks">Snacks</option>
-              <option value="drinks">Drinks</option>
-              <option value="desserts">Desserts</option>
+              <option className="text-black" value="fruits">Fruits</option>
+              <option className="text-black" value="vegetables">Vegetables</option>
+              <option className="text-black" value="meat">Meat</option>
+              <option className="text-black" value="snacks">Snacks</option>
+              <option className="text-black" value="drinks">Drinks</option>
+              <option className="text-black" value="desserts">Desserts</option>
             </select>
           </div>
 

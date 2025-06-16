@@ -5,21 +5,57 @@ import { useEffect, useState } from "react";
 import { ImCross } from "react-icons/im";
 import { FaHome, FaUtensils, FaImages, FaBars } from "react-icons/fa";
 import { MdClose, MdDarkMode, MdOutlineWbSunny } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
   const [show, setShow] = useState(false);
+
   const handleSignOut = () => {
-    signOutUser()
-      .then((restult) => {
-        console.log(restult);
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, sign out!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
       })
-      .catch((err) => {
-        console.log(err);
+      .then((result) => {
+        if (result.isConfirmed) {
+          signOutUser()
+            .then(() => {
+              swalWithBootstrapButtons.fire({
+                title: "Signed out!",
+                text: "You have been signed out successfully.",
+                icon: "success",
+              });
+            })
+            .catch((err) => {
+              swalWithBootstrapButtons.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.message || "Something went wrong!",
+              });
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "You are still logged in 🙂",
+            icon: "info",
+          });
+        }
       });
   };
-
-
 
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== "undefined") {
@@ -43,18 +79,6 @@ const Navbar = () => {
       localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
-
-
-
-
-
-
-
-
-
-
-
-
 
   const navitem = (
     <>
@@ -102,7 +126,7 @@ const Navbar = () => {
     <nav className="fixed top-0 z-50 shadow-2xl w-full dark:bg-dark-black   bg-white">
       <div className="containerr py-4">
         {/* small devise design */}
-        <div className="md:hidden  grid grid-cols-3 items-center justify-between">
+        <div className="lg:hidden  grid grid-cols-3 items-center justify-between">
           <div className="dark:text-white flex items-center gap-x-4">
             <button onClick={() => setShow(!show)}>
               {show ? <ImCross size={25} /> : <FaBars size={25} />}
@@ -111,7 +135,11 @@ const Navbar = () => {
               className="text-black dark:text-white cursor-pointer "
               onClick={toggleDarkMode}
             >
-              {darkMode ? <MdOutlineWbSunny size={30} /> : <MdDarkMode size={30} />}
+              {darkMode ? (
+                <MdOutlineWbSunny size={30} />
+              ) : (
+                <MdDarkMode size={30} />
+              )}
             </button>
           </div>
           {show && (
@@ -177,10 +205,9 @@ const Navbar = () => {
               </div>
             )}
           </div>
-            
         </div>
         {/* large devise design */}
-        <div className="md:flex hidden items-center justify-between">
+        <div className="lg:flex hidden items-center justify-between">
           <div className="">
             <Link to="/">
               <img className="w-[150px]" src={logo} alt="website logo" />
@@ -235,14 +262,17 @@ const Navbar = () => {
                 </Link>
               </div>
             )}
-                                  <button
+            <button
               className="text-black dark:text-white  cursor-pointer "
               onClick={toggleDarkMode}
             >
-              {darkMode ? <MdOutlineWbSunny size={30} /> : <MdDarkMode size={30} />}
+              {darkMode ? (
+                <MdOutlineWbSunny size={30} />
+              ) : (
+                <MdDarkMode size={30} />
+              )}
             </button>
           </div>
-
         </div>
       </div>
     </nav>

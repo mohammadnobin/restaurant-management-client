@@ -9,7 +9,6 @@ const OrderList = ({ myOrders }) => {
   const [orders, setOders] = useState(data);
 
   const handleDelete = (id) => {
-    console.log(id);
 
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {

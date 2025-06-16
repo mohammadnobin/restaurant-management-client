@@ -1,24 +1,3 @@
-// import React from "react";
-
-// const Banner = () => {
-//   return (
-//     <div className="BannerBg bg-no-repeat bg-cover bg-center h-screen">
-//       <div className="flex containerr items-center h-screen justify-center flex-col">
-//         <h2 className="text-5xl font-semibold text-[#d60231] ">Experience the Taste of Perfection 🍽️</h2>
-//         <h1 className="text-7xl py-6 font-bold text-orange">
-//           It's The Food You Love
-//         </h1>
-//         <p className="w-2/3 mx-auto text-center leading-10 text-2xl text-steel-gray">
-//          Welcome to your ultimate dining companion. From discovering delicious dishes to managing restaurant operations seamlessly — everything is just a click away.
-//         </p>
-//         <button className="mt-10 py-4 px-12 text-xl font-bold bg-orange text-white rounded-2xl cursor-pointer">Explore All Foods</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Banner;
-
 import React from "react";
 import { Link } from "react-router";
 

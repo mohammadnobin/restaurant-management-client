@@ -1,9 +1,9 @@
 import sign from "../../assets/signUp/sign.png";
-import logo from "../../assets/logo.svg";
 import { Link, useNavigate } from "react-router";
 import SocialLogIn from "../Shared/SocialLogIn";
 import { useState } from "react";
 import UseAuth from "../../hooks/UseAuth";
+import Swal from "sweetalert2";
 
 const SignUpPage = () => {
   const { signUpUser, updateUser } = UseAuth();
@@ -21,8 +21,11 @@ const SignUpPage = () => {
     const passLowerChar = /^(?=.*[a-z])/;
     const passUpperChar = /^(?=.*[A-Z])/;
     const passMinMax = /^(?=.{6,})/;
-
-    if (!email) {
+    if (!name) {
+      setErrormessage('please enter your name')
+    }else if (!photoURL) {
+      setErrormessage('please enter your photo URL')
+    } else if (!email) {
       setErrormessage("Please enter your email address.");
     } else if (!emailRegex.test(email)) {
       setErrormessage("Please enter a valid email address.");
@@ -35,26 +38,29 @@ const SignUpPage = () => {
     } else if (!passMinMax.test(password)) {
       setErrormessage("Password must be at least 6 characters long.");
     } else {
-      console.log("oky");
       setErrormessage("");
       signUpUser(email, password)
         .then((result) => {
-          console.log(result);
+          Swal.fire({
+            title: "Good job!",
+            text: 'Sign Up Successfully',
+            icon: "success",
+          });
           navigate("/");
           const profile = {
             displayName: name,
             photoURL: photoURL,
           };
           return updateUser(profile)
-            .then((restult) => {
-              console.log(restult);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+            .then((restult) => {})
+            .catch((err) => {});
         })
         .catch((err) => {
-          console.log(err);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: err,
+          });
         });
     }
   };
@@ -71,28 +77,36 @@ const SignUpPage = () => {
               Create your Aprycot account.
             </p>
             <form onSubmit={handleSingUP} className="flex flex-col gap-y-2">
-              <label className="text-lg text-steel-gray dark:text-white">Name</label>
+              <label className="text-lg text-steel-gray dark:text-white">
+                Name
+              </label>
               <input
                 className="w-full border border-steel-gray rounded-full px-4  py-3 dark:placeholder:text-white dark:text-white "
                 type="text"
                 name="name"
                 placeholder="Enter your Name"
               />
-              <label className="text-lg text-steel-gray dark:text-white">Photo URL</label>
+              <label className="text-lg text-steel-gray dark:text-white">
+                Photo URL
+              </label>
               <input
                 className="w-full border border-steel-gray rounded-full px-4  py-3 dark:placeholder:text-white dark:text-white "
                 type="url"
                 name="photoURL"
                 placeholder="Enter your Photo URL"
               />
-              <label className="text-lg text-steel-gray dark:text-white">Email</label>
+              <label className="text-lg text-steel-gray dark:text-white">
+                Email
+              </label>
               <input
                 className="w-full border border-steel-gray rounded-full px-4  py-3 dark:placeholder:text-white dark:text-white "
                 type="email"
                 name="email"
                 placeholder="Enter your email"
               />
-              <label className="text-lg text-steel-gray dark:text-white">Password</label>
+              <label className="text-lg text-steel-gray dark:text-white">
+                Password
+              </label>
               <input
                 className="w-full border border-steel-gray rounded-full px-4  py-3 dark:placeholder:text-white dark:text-white "
                 type="password"

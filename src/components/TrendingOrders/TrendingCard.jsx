@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { FaPlus, FaStar } from "react-icons/fa";
-import mushroom from "../../assets/menuCategory/menucard2.png";
 import { FaStarHalfStroke } from "react-icons/fa6";
 
 const TrendingCard = (props) => {

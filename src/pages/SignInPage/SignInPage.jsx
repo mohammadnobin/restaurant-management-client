@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogIn from "../Shared/SocialLogIn";
 import { useState } from "react";
 import UseAuth from "../../hooks/UseAuth";
+import Swal from "sweetalert2";
 
 const SignInPage = () => {
   const { signInUser } = UseAuth();
@@ -37,15 +38,22 @@ const SignInPage = () => {
     } else if (!passMinMax.test(password)) {
       setErrormessage("Password must be at least 6 characters long.");
     } else {
-      console.log("oky");
       setErrormessage("");
       signInUser(email, password)
         .then((result) => {
-          console.log(result);
+       Swal.fire({
+            title: "Good job!",
+            text: 'Sign In Successfully',
+            icon: "success",
+          });
           navigate(locaFrom);
         })
         .catch((err) => {
-          console.log(err);
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: err,
+          });
         });
     }
   };

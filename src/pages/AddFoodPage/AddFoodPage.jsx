@@ -95,15 +95,15 @@ const AddFoodPage = () => {
               defaultValue=""
               required
             >
-              <option value="" disabled>
+              <option className="text-black" value="" disabled>
                 Select a category
               </option>
-              <option value="fruits">Fruits</option>
-              <option value="vegetables">Vegetables</option>
-              <option value="meat">Meat</option>
-              <option value="snacks">Snacks</option>
-              <option value="drinks">Drinks</option>
-              <option value="desserts">Desserts</option>
+              <option className="text-black" value="fruits">Fruits</option>
+              <option className="text-black" value="vegetables">Vegetables</option>
+              <option className="text-black" value="meat">Meat</option>
+              <option className="text-black" value="snacks">Snacks</option>
+              <option className="text-black" value="drinks">Drinks</option>
+              <option className="text-black" value="desserts">Desserts</option>
             </select>
           </div>
           <div className="flex flex-col">

@@ -1,122 +1,27 @@
-// import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-
-// const Footer = () => {
-//   return (
-//     <footer className="bg-gray-900 text-white py-10 mt-20">
-//       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-//         {/* Column 1 */}
-//         <div>
-//           <h2 className="text-2xl font-bold mb-4">🍽️ DineFine Restaurant</h2>
-//           <p className="text-sm">
-//             Committed to taste and quality. We’re here to make your restaurant
-//             experience easier, smarter, and more delicious.
-//           </p>
-//         </div>
-
-//         {/* Column 2 */}
-//         <div>
-//           <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
-//           <ul className="space-y-2 text-sm">
-//             <li>
-//               <a href="/" className="hover:text-yellow-400">
-//                 Home
-//               </a>
-//             </li>
-//             <li>
-//               <a href="/all-foods" className="hover:text-yellow-400">
-//                 All Foods
-//               </a>
-//             </li>
-//             <li>
-//               <a href="/gallery" className="hover:text-yellow-400">
-//                 Gallery
-//               </a>
-//             </li>
-//             <li>
-//               <a href="/contact" className="hover:text-yellow-400">
-//                 Contact
-//               </a>
-//             </li>
-//           </ul>
-//         </div>
-
-//         {/* Column 3 */}
-//         <div>
-//           <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
-//           <div className="flex space-x-4 text-xl">
-//             <a
-//               href="https://facebook.com"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="hover:text-blue-500"
-//             >
-//               <FaFacebook />
-//             </a>
-//             <a
-//               href="https://instagram.com"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="hover:text-pink-500"
-//             >
-//               <FaInstagram />
-//             </a>
-//             <a
-//               href="https://twitter.com"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="hover:text-blue-400"
-//             >
-//               <FaTwitter />
-//             </a>
-//             <a
-//               href="https://youtube.com"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="hover:text-red-600"
-//             >
-//               <FaYoutube />
-//             </a>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Bottom Line */}
-//       <div className="text-center text-sm mt-10 text-gray-400">
-//         © {new Date().getFullYear()} DineFine Restaurant. All rights reserved.
-//       </div>
-//     </footer>
-//   );
-// };
-
-// export default Footer;
-
-
-
-
-import React from 'react';
+import React from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
 import logo from "../../assets/logo.jpg";
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from "react-router";
 
 const Footer = () => {
   const navigate = useNavigate();
-    return (
-        <footer className=" bg-white text-black dark:text-white dark:bg-dark-black border-t-2 border-white py-10 mt-10">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-5 gap-8">
-          <div>
-                    <div onClick={() => navigate("/")} className="flex items-center  gap-x-2 cursor-pointer ">
-                      <img
-                        className="w-[50px] rounded-2xl"
-                        src={logo}
-                        alt="logo"
-                      />
-                      <h2 className="font-bold text-xl ">Restaurant</h2>
-                    </div>
-            <p className="text-sm text-gray-400">
-           Committed to taste and quality. We’re here to make your restaurant experience easier, smarter, and more delicious.
-            </p>
+  return (
+    <footer className=" bg-white text-black dark:text-white dark:bg-dark-black border-t-2 border-white py-10 mt-10">
+      <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 gap-8">
+        <div>
+          <div
+            onClick={() => navigate("/")}
+            className="flex items-center  gap-x-2 cursor-pointer "
+          >
+            <img className="w-[50px] rounded-2xl" src={logo} alt="logo" />
+            <h2 className="font-bold text-xl ">Restaurant</h2>
           </div>
-           {/* Contact Info */}
+          <p className="text-sm text-gray-400">
+            Committed to taste and quality. We’re here to make your restaurant
+            experience easier, smarter, and more delicious.
+          </p>
+        </div>
+        {/* Contact Info */}
         <div>
           <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
           <ul className="text-sm text-black dark:text-white  space-y-2">
@@ -126,46 +31,94 @@ const Footer = () => {
           </ul>
         </div>
 
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Explore</h3>
-            <ul className="space-y-2 text-sm text-black dark:text-white">
-              <li><Link to="/" className="">Home</Link></li>
-              <li><Link to="/privacy" className="">Subcriptoins</Link></li>
-              <li><Link to="/developer" className="">Local Businesses</Link></li>
-              <li><Link to="/about" className="">About</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm text-black dark:text-white">
-              <li><a href="/terms" className="">Terms of Service</a></li>
-              <li><a href="/privacy" className="">Privacy Policy</a></li>
-              <li><a href="/developer" className="">Developer Resources</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
-                <FaFacebookF size={20} />
+        <div>
+          <h3 className="text-xl font-semibold mb-4">Explore</h3>
+          <ul className="space-y-2 text-sm text-black dark:text-white">
+            <li>
+              <Link to="/" className="">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/privacy" className="">
+                Subcriptoins
+              </Link>
+            </li>
+            <li>
+              <Link to="/developer" className="">
+                Local Businesses
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="">
+                About
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+          <ul className="space-y-2 text-sm text-black dark:text-white">
+            <li>
+              <a href="/terms" className="">
+                Terms of Service
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-sky-400">
-                <FaTwitter size={20} />
+            </li>
+            <li>
+              <a href="/privacy" className="">
+                Privacy Policy
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
-                <FaLinkedinIn size={20} />
+            </li>
+            <li>
+              <a href="/developer" className="">
+                Developer Resources
               </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
-                <FaGithub size={20} />
-              </a>
-            </div>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
+          <div className="flex space-x-4">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-500"
+            >
+              <FaFacebookF size={20} />
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-sky-400"
+            >
+              <FaTwitter size={20} />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-300"
+            >
+              <FaLinkedinIn size={20} />
+            </a>
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-400"
+            >
+              <FaGithub size={20} />
+            </a>
           </div>
         </div>
-        <div className="border-t border-gray-700 mt-10 pt-4 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} CYBER APP. All Rights Reseved.
-        </div>
-      </footer>
-    );
+      </div>
+      <div className="border-t border-gray-700 mt-10 pt-4 text-center text-sm text-gray-500">
+        © {new Date().getFullYear()} CYBER APP. All Rights Reseved.
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

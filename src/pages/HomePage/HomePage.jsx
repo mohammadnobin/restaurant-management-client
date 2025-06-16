@@ -16,7 +16,6 @@ const HomePage = () => {
             </Suspense>
             <MenuCategory />
             <TrendingOrders />
-            {/* <div className="fixed top-1/2 right-0 w-[100px] h-[100px] bg-orange"></div> */}
         </>
     );
 };
