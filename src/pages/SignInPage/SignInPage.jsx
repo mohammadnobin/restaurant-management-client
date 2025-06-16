@@ -10,8 +10,8 @@ const SignInPage = () => {
   const { signInUser } = UseAuth();
   const [errormessage, setErrormessage] = useState("");
   const location = useLocation();
-  const navigate = useNavigate()
-  const locaFrom = location.state || '/'
+  const navigate = useNavigate();
+  const locaFrom = location.state || "/";
   const handleSingIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -42,7 +42,7 @@ const SignInPage = () => {
       signInUser(email, password)
         .then((result) => {
           console.log(result);
-          navigate(locaFrom)
+          navigate(locaFrom);
         })
         .catch((err) => {
           console.log(err);
@@ -51,32 +51,27 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="relative pt-10 bg-white z-0 after:absolute after:w-1/2 after:h-2/3 after:bg-[rgba(234,106,18,0.2)] after:right-0 after:-top-5 after:rounded-bl-full after:z-[-1]">
+    <div className="relative pt-10 dark:bg-dark-black bg-white z-0 after:absolute after:w-1/2 after:h-2/3 after:bg-[rgba(234,106,18,0.2)] after:right-0 after:-top-5 after:rounded-bl-full after:z-[-1]">
       <div className="containerr">
         <div className="lg:grid xl:grid-cols-3 lg:grid-cols-2  items-center">
           <div className="w-full">
-            {/* <div className="lg:my-10 my-5">
-              <Link to="/">
-                <img className="w-2/3 lg:mx-0 mx-auto" src={logo} alt="lgog" />
-              </Link>
-            </div> */}
-            <h2 className="font-semibold text-center text-midnight-navy text-4xl">
+            <h2 className="font-semibold dark:text-white  text-center text-midnight-navy text-4xl">
               Sign In
             </h2>
-            <p className="text-lg text-center text-steel-gray mb-8 mt-4">
+            <p className="text-lg text-center text-steel-gray dark:text-white  mb-8 mt-4">
               Sign in to stay connected.
             </p>
             <form onSubmit={handleSingIn} className="flex flex-col gap-y-2">
-              <label className="text-lg text-steel-gray">Email</label>
+              <label className="text-lg text-steel-gray dark:text-white ">Email</label>
               <input
-                className="w-full border border-steel-gray rounded-full px-4  py-3"
+                className="w-full border border-steel-gray rounded-full dark:placeholder:text-white dark:text-white px-4  py-3"
                 type="email"
                 name="email"
                 placeholder="Enter your email"
               />
-              <label className="text-lg text-steel-gray">Password</label>
+              <label className="text-lg text-steel-gray dark:text-white ">Password</label>
               <input
-                className="w-full border border-steel-gray rounded-full px-4  py-3"
+                className="w-full border border-steel-gray rounded-full dark:placeholder:text-white dark:text-white px-4  py-3"
                 type="password"
                 name="password"
                 placeholder="Enter your password"
@@ -85,7 +80,7 @@ const SignInPage = () => {
               <div className="flex justify-between items-center my-3">
                 <div className="flex items-center gap-x-2">
                   <input type="checkbox" name="" id="" />
-                  <label className="text-steel-gray">Remember Me</label>
+                  <label className="text-steel-gray dark:text-white ">Remember Me</label>
                 </div>
                 <p className="text-orange cursor-pointer">forget passwor</p>
               </div>
@@ -96,11 +91,11 @@ const SignInPage = () => {
                 Sign In
               </button>
             </form>
-            <p className="text-center text-lg py-4 text-steel-gray">
+            <p className="text-center text-lg py-4 text-steel-gray dark:text-white ">
               or sign in with other accounts?
             </p>
             <SocialLogIn />
-            <h4 className="text-center text-lg text-steel-gray">
+            <h4 className="text-center text-lg text-steel-gray dark:text-white ">
               Don’t have an account?{" "}
               <Link to="/signup" className="text-orange">
                 Click here to sign up.

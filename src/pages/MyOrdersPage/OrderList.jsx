@@ -39,12 +39,13 @@ const OrderList = ({ myOrders }) => {
                   text: "Your file has been deleted.",
                   icon: "success",
                 });
-                const remainingTips = orders.filter((order) => order._id !== id);
+                const remainingTips = orders.filter(
+                  (order) => order._id !== id
+                );
                 setOders(remainingTips);
               }
             });
         } else if (
-          /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
         ) {
           swalWithBootstrapButtons.fire({
@@ -55,15 +56,6 @@ const OrderList = ({ myOrders }) => {
         }
       });
 
-    // axios
-    //   .delete(`${import.meta.env.VITE_API_URL}/delete_order/${id}`)
-    //   .then((res) => {
-    //     if (res.data.deletedCount) {
-    //       alert("this is deleted");
-    //     }
-    //      const remainingTips = orders.filter((tip) => tip._id !== id);
-    //             setOders(remainingTips);
-    //   });
   };
 
   return (
@@ -78,7 +70,7 @@ const OrderList = ({ myOrders }) => {
         <>
           {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto shadow-lg rounded-lg border border-orange-300">
-            <table className="min-w-full bg-white divide-y divide-orange-200">
+            <table className="min-w-full bg-white dark:bg-dark-black divide-y divide-orange-200">
               <thead className="bg-orange-100 text-orange-800">
                 <tr>
                   <th className="px-4 py-3 text-left text-base font-semibold">
@@ -101,9 +93,9 @@ const OrderList = ({ myOrders }) => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-orange-100">
+              <tbody className="divide-y divide-orange-100 dark:text-white">
                 {orders?.map((food) => (
-                  <tr key={food._id} className="hover:bg-orange-50 transition">
+                  <tr key={food._id} className="hover:bg-orange-50 hover:text-black transition">
                     <td className="px-4 py-3">
                       <img
                         src={food.food_image}

@@ -54,20 +54,18 @@
 
 // export default MyFoodsList;
 
-
-
-import React, { use, useState } from 'react';
+import React, { use, useState } from "react";
 import { FaEdit, FaEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { Link } from 'react-router';
-import Swal from 'sweetalert2';
+import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 const MyFoodsList = ({ myaddedFood }) => {
   const data = use(myaddedFood);
-  
+
   const [singleFood, setSingleFood] = useState(data);
 
-   const handleDelete = (id) => {
+  const handleDelete = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",
@@ -98,7 +96,9 @@ const MyFoodsList = ({ myaddedFood }) => {
                   text: "Your file has been deleted.",
                   icon: "success",
                 });
-                const remainingTips = singleFood.filter((food) => food._id !== id);
+                const remainingTips = singleFood.filter(
+                  (food) => food._id !== id
+                );
                 setSingleFood(remainingTips);
               }
             });
@@ -127,19 +127,29 @@ const MyFoodsList = ({ myaddedFood }) => {
         <>
           {/* Desktop Table */}
           <div className="hidden md:block overflow-x-auto shadow-lg rounded-lg border border-orange-300">
-            <table className="min-w-full bg-white divide-y divide-orange-200">
+            <table className="min-w-full dark:bg-dark-black dark:text-white bg-white divide-y divide-orange-200">
               <thead className="bg-orange-100 text-orange-800">
                 <tr>
-                  <th className="px-4 py-3 text-left text-base font-semibold">Image</th>
-                  <th className="px-4 py-3 text-left text-base font-semibold">Name</th>
-                  <th className="px-4 py-3 text-left text-base font-semibold">Price</th>
-                  <th className="px-4 py-3 text-left text-base font-semibold">Quantity</th>
-                  <th className="px-4 py-3 text-center text-base font-semibold">Action</th>
+                  <th className="px-4 py-3 text-left text-base font-semibold">
+                    Image
+                  </th>
+                  <th className="px-4 py-3 text-left text-base font-semibold">
+                    Name
+                  </th>
+                  <th className="px-4 py-3 text-left text-base font-semibold">
+                    Price
+                  </th>
+                  <th className="px-4 py-3 text-left text-base font-semibold">
+                    Quantity
+                  </th>
+                  <th className="px-4 py-3 text-center text-base font-semibold">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-orange-100">
                 {singleFood.map((food) => (
-                  <tr key={food._id} className="hover:bg-orange-50 transition">
+                  <tr key={food._id} className="hover:bg-orange-50 hover:text-black transition">
                     <td className="px-4 py-3">
                       <img
                         src={food.food_image}
@@ -157,22 +167,25 @@ const MyFoodsList = ({ myaddedFood }) => {
                         </button>
                       </Link> */}
                       <div className="flex justify-center gap-3">
-              <Link to={`/single_food/${food._id}`} className="dark:bg-black dark:text-white dark:border-white border bg-green text-white p-2 rounded-lg transition">
-                <FaEye className="text-xl" />
-              </Link>
-              <button
-                onClick={() => handleDelete(food._id)}
-                className="dark:bg-black dark:text-white dark:border-white border bg-green cursor-pointer text-white p-2 rounded-lg transition"
-              >
-                <MdDelete className="text-xl" />
-              </button>
-              <Link
-                to={`/update_food/${food._id}`}
-                className="dark:bg-black dark:text-white dark:border-white border bg-green text-white p-2 rounded-lg transition"
-              >
-                <FaEdit className="text-xl" />
-              </Link>
-            </div>
+                        <Link
+                          to={`/single_food/${food._id}`}
+                          className="dark:bg-black dark:text-white dark:border-white border bg-green text-white p-2 rounded-lg transition"
+                        >
+                          <FaEye className="text-xl" />
+                        </Link>
+                        <button
+                          onClick={() => handleDelete(food._id)}
+                          className="dark:bg-black dark:text-white dark:border-white border bg-green cursor-pointer text-white p-2 rounded-lg transition"
+                        >
+                          <MdDelete className="text-xl" />
+                        </button>
+                        <Link
+                          to={`/update_food/${food._id}`}
+                          className="dark:bg-black dark:text-white dark:border-white border bg-green text-white p-2 rounded-lg transition"
+                        >
+                          <FaEdit className="text-xl" />
+                        </Link>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -183,7 +196,10 @@ const MyFoodsList = ({ myaddedFood }) => {
           {/* Mobile Card View */}
           <div className="md:hidden space-y-4">
             {data.map((food) => (
-              <div key={food._id} className="bg-white rounded-lg shadow border border-orange-200 p-4 space-y-3">
+              <div
+                key={food._id}
+                className="bg-white rounded-lg shadow border border-orange-200 p-4 space-y-3"
+              >
                 <div className="flex items-center gap-4">
                   <img
                     src={food.food_image}
@@ -191,9 +207,15 @@ const MyFoodsList = ({ myaddedFood }) => {
                     className="w-20 h-20 object-cover rounded-lg border"
                   />
                   <div>
-                    <h3 className="text-lg font-semibold text-orange-600">{food.food_name}</h3>
-                    <p className="text-sm text-gray-700">Price: ${food.price}</p>
-                    <p className="text-sm text-gray-700">Quantity: {food.quantity}</p>
+                    <h3 className="text-lg font-semibold text-orange-600">
+                      {food.food_name}
+                    </h3>
+                    <p className="text-sm text-gray-700">
+                      Price: ${food.price}
+                    </p>
+                    <p className="text-sm text-gray-700">
+                      Quantity: {food.quantity}
+                    </p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -213,4 +235,3 @@ const MyFoodsList = ({ myaddedFood }) => {
 };
 
 export default MyFoodsList;
-

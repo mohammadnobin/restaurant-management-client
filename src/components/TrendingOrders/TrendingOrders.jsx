@@ -8,7 +8,7 @@ import masrum4 from '../../assets/menuCategory/menucard4.png'
 const TrendingOrders = () => {
   return (
     <div className="containerr">
-      <h2 className="font-semibold text-3xl pb-10 text-center ">
+      <h2 className="font-semibold dark:text-white text-3xl pb-10 text-center ">
         Trending Foods
       </h2>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-y-14 gap-x-6">

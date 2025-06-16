@@ -9,7 +9,7 @@ const AddFoodPage = () => {
     const form = e.target;
     const formData = new FormData(form);
     const newFoods = Object.fromEntries(formData.entries());
-    console.log(newFoods)
+    console.log(newFoods);
     newFoods.Purchase_count = 0;
 
     fetch(`${import.meta.env.VITE_API_URL}/add_foods`, {
@@ -32,8 +32,8 @@ const AddFoodPage = () => {
   };
   return (
     <div className="containerr">
-            <h2 className="text-2xl md:text-3xl font-semibold text-orange-600 pt-10 text-center">
-        🍽️  You Can add Food
+      <h2 className="text-2xl md:text-3xl font-semibold text-orange-600 pt-10 text-center">
+        🍽️ You Can add Food
       </h2>
       <div className="lg:w-2/3 mx-auto mt-5 p-8 border border-orange rounded-2xl ">
         <form
@@ -45,7 +45,7 @@ const AddFoodPage = () => {
               Food Name
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none "
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white "
               type="text"
               placeholder="Food Name"
               name="food_name"
@@ -56,7 +56,7 @@ const AddFoodPage = () => {
               Food Image
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
               type="text"
               placeholder="Food Image"
               name="food_image"
@@ -69,7 +69,7 @@ const AddFoodPage = () => {
             <select
               id="category"
               name="category"
-             className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none "
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white "
               defaultValue=""
               required
             >
@@ -89,7 +89,7 @@ const AddFoodPage = () => {
               Food Origin (Country)
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
               type="text"
               placeholder="Food Origin (Country)"
               name="origin"
@@ -100,7 +100,7 @@ const AddFoodPage = () => {
               Quantity
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
               type="text"
               placeholder="Quantity"
               name="quantity"
@@ -111,7 +111,7 @@ const AddFoodPage = () => {
               Price{" "}
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
               type="text"
               placeholder="Price"
               name="price"
@@ -122,7 +122,7 @@ const AddFoodPage = () => {
               Description{" "}
             </label>
             <textarea
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
               type="text"
               name="description"
               placeholder="Description"
@@ -133,7 +133,7 @@ const AddFoodPage = () => {
               Name
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white dark:text-white"
               type="text"
               defaultValue={user?.displayName}
               readOnly
@@ -145,7 +145,7 @@ const AddFoodPage = () => {
               Email
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white dark:text-white"
               type="text"
               defaultValue={user?.email}
               readOnly
@@ -167,8 +167,6 @@ const AddFoodPage = () => {
 };
 
 export default AddFoodPage;
-
-
 
 // import React from "react";
 // import UseAuth from "../../hooks/UseAuth";
@@ -216,7 +214,7 @@ export default AddFoodPage;
 //               Food Name
 //             </label>
 //             <input
-//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
 //               type="text"
 //               placeholder="Enter food name"
 //               name="food_name"
@@ -229,7 +227,7 @@ export default AddFoodPage;
 //               Food Image URL
 //             </label>
 //             <input
-//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
 //               type="url"
 //               placeholder="Image URL"
 //               name="food_image"
@@ -265,7 +263,7 @@ export default AddFoodPage;
 //               Food Origin (Country)
 //             </label>
 //             <input
-//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
 //               type="text"
 //               placeholder="Enter country of origin"
 //               name="origin"
@@ -278,7 +276,7 @@ export default AddFoodPage;
 //               Quantity
 //             </label>
 //             <input
-//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
 //               type="number"
 //               placeholder="Enter quantity (pieces)"
 //               name="quantity"
@@ -288,10 +286,10 @@ export default AddFoodPage;
 
 //           <div className="flex flex-col">
 //             <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
-//               Price 
+//               Price
 //             </label>
 //             <input
-//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
 //               type="number"
 //               placeholder="Enter price in Taka"
 //               name="price"
@@ -304,7 +302,7 @@ export default AddFoodPage;
 //               Description
 //             </label>
 //             <textarea
-//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
 //               name="description"
 //               placeholder="Write a short description..."
 //               rows="4"
@@ -317,7 +315,7 @@ export default AddFoodPage;
 //               Seller Name
 //             </label>
 //             <input
-//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
 //               type="text"
 //               defaultValue={user?.displayName}
 //               readOnly
@@ -330,7 +328,7 @@ export default AddFoodPage;
 //               Seller Email
 //             </label>
 //             <input
-//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+//               className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:placeholder:text-white dark:text-white"
 //               type="email"
 //               defaultValue={user?.email}
 //               readOnly

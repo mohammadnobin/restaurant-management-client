@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link, useLoaderData } from 'react-router';
-import { AiFillStar } from 'react-icons/ai';
-import { MdCategory, MdOutlineAttachMoney } from 'react-icons/md';
-import { FaMapMarkerAlt, FaShoppingCart } from 'react-icons/fa';
-import PagesBanner from '../Shared/PagesBanner';
+import React from "react";
+import { Link, useLoaderData } from "react-router";
+import { AiFillStar } from "react-icons/ai";
+import { MdCategory, MdOutlineAttachMoney } from "react-icons/md";
+import { FaMapMarkerAlt, FaShoppingCart } from "react-icons/fa";
+import PagesBanner from "../Shared/PagesBanner";
 
 const DetailsPage = () => {
   const data = useLoaderData();
@@ -18,14 +18,15 @@ const DetailsPage = () => {
     origin,
     description,
     email,
-    _id
+    _id,
   } = data;
 
   return (
-    <div className="containerr px-4 ">
+    <div className="containerr pt-10 ">
       <title>Details Page</title>
-      <PagesBanner title='Details' />
-      <div className="grid grid-cols-1 max-w-6xl mx-auto md:grid-cols-2 gap-10 items-center bg-white shadow-md rounded-3xl p-8">
+      <PagesBanner title="Details" />
+      <div className="grid grid-cols-1 max-w-6xl mx-auto md:grid-cols-2 gap-10 items-center bg-white dark:bg-dark-black border-2
+       border-white shadow-md rounded-3xl p-8">
         <img
           src={food_image}
           alt={food_name}
@@ -34,7 +35,7 @@ const DetailsPage = () => {
 
         <div className="space-y-4">
           <h1 className="text-4xl font-bold text-orange-600">{food_name}</h1>
-          <p className="text-gray-600 text-lg">{description}</p>
+          <p className="text-gray-600 dark:text-white text-lg">{description}</p>
 
           <div className="flex flex-wrap gap-4 mt-4">
             <span className="flex items-center gap-2 bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
@@ -54,13 +55,13 @@ const DetailsPage = () => {
             </span>
           </div>
 
-          <p className="pt-4 text-sm text-gray-500">
+          <p className="pt-4 text-sm dark:text-white text-gray-500">
             <strong>Posted by:</strong> {email}
           </p>
           <Link to={`/purchase/${_id}`}>
-          <button className="mt-6 w-full flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition duration-300 text-lg">
-            <FaShoppingCart /> Purchase Now
-          </button>
+            <button className="mt-6 cursor-pointer w-full flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition duration-300 text-lg">
+              <FaShoppingCart /> Purchase Now
+            </button>
           </Link>
         </div>
       </div>

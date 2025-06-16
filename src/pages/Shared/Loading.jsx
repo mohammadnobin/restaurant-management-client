@@ -4,7 +4,7 @@ import loadingAnimation from "../../assets/loading.json";
 
 const Loading = () => {
   return (
-    <div className="w-full  h-lvh flex items-center justify-center bg-white z-50">
+    <div className="w-full  h-lvh flex items-center dark:bg-dark-black justify-center bg-white z-50">
       <Lottie
         animationData={loadingAnimation}
         loop={true}

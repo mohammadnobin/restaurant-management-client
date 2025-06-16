@@ -9,7 +9,6 @@ const MyFoodsPage = () => {
     const {myAddedFoodsPromise} = useMyaddedFoodApi()
     return (
         <div className='containerr'>
-            this is MyfoodsPage
             <Suspense fallback={<Loading />}>
                 <MyFoodsLIst myaddedFood={myAddedFoodsPromise(user?.email)} />
             </Suspense>

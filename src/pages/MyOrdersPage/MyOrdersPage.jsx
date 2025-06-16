@@ -9,7 +9,7 @@ const MyOrdersPage = () => {
     const {user}= UseAuth()
     const {myOrdersPromise} = useOrderApi()
     return (
-        <div>
+        <div className='containerr'>
             <Suspense fallback={<Loading /> }>
                 <OrderList myOrders={myOrdersPromise(user?.email,
                     user.accessToken

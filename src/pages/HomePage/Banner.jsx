@@ -19,8 +19,6 @@
 
 // export default Banner;
 
-
-
 import React from "react";
 import { Link } from "react-router";
 
@@ -35,12 +33,14 @@ const Banner = () => {
           It's The Food You Love
         </h1>
         <p className="text-base sm:text-xl md:text-2xl text-gray-700 leading-relaxed px-2 md:px-8">
-          Welcome to your ultimate dining companion. From discovering delicious dishes to managing restaurant operations seamlessly — everything is just a click away.
+          Welcome to your ultimate dining companion. From discovering delicious
+          dishes to managing restaurant operations seamlessly — everything is
+          just a click away.
         </p>
-        <Link to='/all_foods'>
-        <button className="mt-3.5 md:mt-10 py-3 px-8 sm:px-10 md:px-12 text-lg sm:text-xl font-semibold bg-orange hover:bg-white border-2 hover:text-orange cursor-pointer hover:border-orange  text-white rounded-2xl transition duration-300">
-          Explore All Foods
-        </button>
+        <Link to="/all_foods">
+          <button className="mt-3.5 md:mt-10 py-3 px-8 sm:px-10 md:px-12 text-lg sm:text-xl font-semibold bg-orange hover:bg-white border-2 hover:text-orange cursor-pointer hover:border-orange  text-white rounded-2xl transition duration-300">
+            Explore All Foods
+          </button>
         </Link>
       </div>
     </div>

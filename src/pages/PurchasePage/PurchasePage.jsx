@@ -32,8 +32,8 @@
 //       buyer_email: user?.email,
 //       date: Date.now()
 //     };
-    
-    // if (user?.email === email) return alert('tumr product')
+
+// if (user?.email === email) return alert('tumr product')
 //       console.log(orderData)
 //     axios.post(`${import.meta.env.VITE_API_URL}/order/${_id}`,orderData)
 //     .then(res => console.log(res.data))
@@ -94,7 +94,7 @@
 //           />
 //         </div>
 //         {
-//           quantity == 0 ? 
+//           quantity == 0 ?
 //           'no product avelable'
 //           :
 
@@ -111,8 +111,6 @@
 // };
 
 // export default PurchasePage;
-
-
 
 // import React, { useState } from 'react';
 // import { useLoaderData } from 'react-router';
@@ -248,28 +246,19 @@
 
 // export default PurchasePage;
 
-
-
-import React, { useState } from 'react';
-import { useLoaderData } from 'react-router';
-import UseAuth from '../../hooks/UseAuth';
-import axios from 'axios';
-import PagesBanner from '../Shared/PagesBanner';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import { useLoaderData } from "react-router";
+import UseAuth from "../../hooks/UseAuth";
+import axios from "axios";
+import PagesBanner from "../Shared/PagesBanner";
+import Swal from "sweetalert2";
 
 const PurchasePage = () => {
   const { user } = UseAuth();
   const data = useLoaderData();
 
-  const {
-    food_name,
-    price,
-    quantity,
-    food_image,
-    _id,
-    email,
-    purchase_count,
-  } = data || {};
+  const { food_name, price, quantity, food_image, _id, email, purchase_count } =
+    data || {};
 
   const [quantityNum, setQuantity] = useState(quantity);
   const [purchaseCount, setPurchaseCount] = useState(purchase_count);
@@ -286,38 +275,36 @@ const PurchasePage = () => {
       buyer_email: user?.email,
       date: Date.now(),
     };
-    // if (user?.email === email) return alert('tumr product')
-
     if (user?.email === email) {
-  return Swal.fire({
-    icon: 'warning',
-    title: 'Oops!',
-    text: 'এটা আপনার নিজের প্রোডাক্ট, আপনি এটা অর্ডার করতে পারবেন না!',
-    confirmButtonColor: '#f97316', // orange
-  });
-}
+      return Swal.fire({
+        icon: "warning",
+        title: "Oops!",
+        text: "এটা আপনার নিজের প্রোডাক্ট, আপনি এটা অর্ডার করতে পারবেন না!",
+        confirmButtonColor: "#f97316", // orange
+      });
+    }
 
-
-    axios.post(`${import.meta.env.VITE_API_URL}/order/${_id}`, orderData)
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/order/${_id}`, orderData)
       .then((res) => {
         if (res.data?.acknowledged || res.data?.modifiedCount > 0) {
-                    Swal.fire({
-                      title: "Good job!",
-                      text: "Order successfully",
-                      icon: "success",
-                    });
-             setPurchaseCount(purchaseCount + 1);
-    setQuantity(quantityNum -1)
-    console.log(res.data)
+          Swal.fire({
+            title: "Good job!",
+            text: "Order successfully",
+            icon: "success",
+          });
+          setPurchaseCount(purchaseCount + 1);
+          setQuantity(quantityNum - 1);
+          console.log(res.data);
         }
-      })
+      });
   };
 
   return (
-    <div className="containerr px-4 md:px-6 lg:px-10">
+    <div className="containerr pt-10 ">
       <title>Purchase Page</title>
-      <PagesBanner title='PurchasePage' />
-      <div className="bg-white border max-w-4xl  mx-auto rounded-2xl shadow-lg overflow-hidden md:flex">
+      <PagesBanner title="PurchasePage" />
+      <div className="bg-white border-2 border-white dark:bg-dark-black max-w-4xl  mx-auto rounded-2xl shadow-lg overflow-hidden md:flex">
         <div className="md:w-1/2">
           <img
             src={food_image}
@@ -326,10 +313,14 @@ const PurchasePage = () => {
           />
         </div>
         <div className="md:w-1/2 p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-orange-600 text-center mb-4">🍽️ Purchase Food</h2>
+          <h2 className="text-2xl font-bold text-orange-600 text-center mb-4">
+            🍽️ Purchase Food
+          </h2>
           <form onSubmit={handlePurchase} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">Food Name</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-white ">
+                Food Name
+              </label>
               <input
                 type="text"
                 value={food_name}
@@ -338,7 +329,9 @@ const PurchasePage = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Price</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-white ">
+                Price
+              </label>
               <input
                 type="text"
                 value={`$${price}`}
@@ -347,7 +340,9 @@ const PurchasePage = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Available Quantity</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-white ">
+                Available Quantity
+              </label>
               <input
                 type="text"
                 value={quantityNum}
@@ -356,7 +351,9 @@ const PurchasePage = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Total Purchases</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-white ">
+                Total Purchases
+              </label>
               <input
                 type="text"
                 value={purchaseCount}
@@ -365,7 +362,9 @@ const PurchasePage = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Buyer Name</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-white ">
+                Buyer Name
+              </label>
               <input
                 type="text"
                 value={user?.displayName}
@@ -374,7 +373,9 @@ const PurchasePage = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Buyer Email</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-white ">
+                Buyer Email
+              </label>
               <input
                 type="email"
                 value={user?.email}
@@ -402,5 +403,3 @@ const PurchasePage = () => {
 };
 
 export default PurchasePage;
-
-

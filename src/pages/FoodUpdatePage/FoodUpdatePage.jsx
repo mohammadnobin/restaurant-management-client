@@ -26,17 +26,20 @@ const FoodUpdatePage = () => {
       .put(`${import.meta.env.VITE_API_URL}/update_food/${_id}`, updateFood)
       .then((res) => {
         if (res.data.modifiedCount) {
-                  Swal.fire({
-                    title: "Good job!",
-                    text: "Successfully Update food",
-                    icon: "success",
-                  });
+          Swal.fire({
+            title: "Good job!",
+            text: "Successfully Update food",
+            icon: "success",
+          });
         }
       });
   };
   return (
-    <div className="containerr">
-      <div className="lg:w-2/3 mx-auto my-24 p-8 border border-orange rounded-2xl">
+    <div className="containerr pt-14">
+      <h2 className="text-2xl md:text-3xl font-semibold text-orange-600 pb-10 text-center">
+        🍽️ You Can add Food
+      </h2>
+      <div className="lg:w-2/3 mx-auto  p-8 border border-orange rounded-2xl">
         <form
           onSubmit={handleFoodAdd}
           className="md:grid md:space-y-0 space-y-4 grid-cols-2 gap-6"
@@ -46,7 +49,7 @@ const FoodUpdatePage = () => {
               Food Name
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:text-white"
               type="text"
               placeholder="Enter food name"
               name="food_name"
@@ -60,7 +63,7 @@ const FoodUpdatePage = () => {
               Food Image URL
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:text-white"
               type="url"
               placeholder="Image URL"
               name="food_image"
@@ -97,7 +100,7 @@ const FoodUpdatePage = () => {
               Food Origin (Country)
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:text-white"
               type="text"
               placeholder="Enter country of origin"
               name="origin"
@@ -111,7 +114,7 @@ const FoodUpdatePage = () => {
               Quantity
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:text-white"
               type="text"
               placeholder="Enter quantity (pieces)"
               name="quantity"
@@ -122,10 +125,10 @@ const FoodUpdatePage = () => {
 
           <div className="flex flex-col">
             <label className="font-semibold text-lg pb-1 md:text-2xl text-steel-gray">
-              Price 
+              Price
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:text-white"
               type="text"
               placeholder="Enter price in Taka"
               name="price"
@@ -139,7 +142,7 @@ const FoodUpdatePage = () => {
               Description
             </label>
             <textarea
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:text-white"
               name="description"
               defaultValue={description}
               placeholder="Write a short description..."
@@ -152,7 +155,7 @@ const FoodUpdatePage = () => {
               Seller Name
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:text-white"
               type="text"
               defaultValue={user?.displayName}
               readOnly
@@ -165,7 +168,7 @@ const FoodUpdatePage = () => {
               Seller Email
             </label>
             <input
-              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none"
+              className="border-orange border-2 rounded-2xl py-3 px-4 focus:border-orange outline-none dark:text-white"
               type="email"
               defaultValue={user?.email}
               readOnly

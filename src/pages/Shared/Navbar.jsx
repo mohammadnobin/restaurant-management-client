@@ -1,13 +1,13 @@
 import { Link, NavLink } from "react-router";
 import UseAuth from "../../hooks/UseAuth";
 import logo from "../../assets/logo.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImCross } from "react-icons/im";
 import { FaHome, FaUtensils, FaImages, FaBars } from "react-icons/fa";
+import { MdClose, MdDarkMode, MdOutlineWbSunny } from "react-icons/md";
 
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
-  console.log(user)
   const [show, setShow] = useState(false);
   const handleSignOut = () => {
     signOutUser()
@@ -18,6 +18,44 @@ const Navbar = () => {
         console.log(err);
       });
   };
+
+
+
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      if (localStorage.theme) {
+        return localStorage.theme === "dark";
+      } else {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+      }
+    }
+    return false;
+  });
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (darkMode) {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
+
+
+
+
+
+
+
+
+
+
+
+
   const navitem = (
     <>
       <li>
@@ -61,13 +99,19 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="fixed top-0 z-50 shadow-2xl w-full  bg-white">
+    <nav className="fixed top-0 z-50 shadow-2xl w-full dark:bg-dark-black   bg-white">
       <div className="containerr py-4">
         {/* small devise design */}
         <div className="md:hidden  grid grid-cols-3 items-center justify-between">
-          <div className="">
+          <div className="dark:text-white flex items-center gap-x-4">
             <button onClick={() => setShow(!show)}>
               {show ? <ImCross size={25} /> : <FaBars size={25} />}
+            </button>
+            <button
+              className="text-black dark:text-white cursor-pointer "
+              onClick={toggleDarkMode}
+            >
+              {darkMode ? <MdOutlineWbSunny size={30} /> : <MdDarkMode size={30} />}
             </button>
           </div>
           {show && (
@@ -133,6 +177,7 @@ const Navbar = () => {
               </div>
             )}
           </div>
+            
         </div>
         {/* large devise design */}
         <div className="md:flex hidden items-center justify-between">
@@ -144,7 +189,7 @@ const Navbar = () => {
           <div className="">
             <ul className="flex items-center gap-x-6">{navitem}</ul>
           </div>
-          <div className="">
+          <div className=" flex items-center gap-x-4">
             {user ? (
               <div className="flex items-center gap-x-4 ">
                 <div className="dropdown dropdown-bottom dropdown-center">
@@ -190,7 +235,14 @@ const Navbar = () => {
                 </Link>
               </div>
             )}
+                                  <button
+              className="text-black dark:text-white  cursor-pointer "
+              onClick={toggleDarkMode}
+            >
+              {darkMode ? <MdOutlineWbSunny size={30} /> : <MdDarkMode size={30} />}
+            </button>
           </div>
+
         </div>
       </div>
     </nav>

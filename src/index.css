@@ -3,6 +3,7 @@
 /* Google Fonts Link  end */
 /* Tailwind css and Daisy Ui link start */
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 @plugin "daisyui" {
   themes: light --default;
 }
@@ -11,11 +12,19 @@
   --color-midnight-navy: #07143B;
   --color-steel-gray: #959895;
   --color-orange: #ea6a12;
+  --color-dark-black: #212121;
 }
 /* Full Body design */
 body {
   font-family: "Poppins", sans-serif;
-  background-image: url(/src/assets/bodybg.png);
+}
+
+.bg-custom {
+  @apply bg-[url('./assets/bodybg.png')] dark:bg-[#212121];
+}
+.dark .bg-custom {
+  background-image: none;
+  background-color:#212121;
 }
 .pageBannerBg{
   background-image: url(/src/assets/banner/pagebanner.png);

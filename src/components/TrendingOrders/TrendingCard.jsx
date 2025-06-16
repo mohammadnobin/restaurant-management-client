@@ -20,7 +20,7 @@ const TrendingCard = (props) => {
 
   return (
     <motion.div
-      className="p-8 mt-28 hover:bg-orange group shadow-sm rounded-[40px] bg-white group"
+      className="p-8 mt-28 dark:bg-dark-black border-2 border-white dark:border-white hover:bg-orange group shadow-sm rounded-[40px] bg-white group"
       initial="initial"
       whileHover="rotate"
     >
@@ -30,8 +30,8 @@ const TrendingCard = (props) => {
         src={props.image}
         alt=""
       />
-      <h2 className="text-xl font-semibold group-hover:text-white ">
-       {props.title}
+      <h2 className="text-xl font-semibold dark:text-white group-hover:text-white ">
+        {props.title}
       </h2>
       <div className="flex items-center pt-2 text-orange group-hover:text-white">
         <FaStar />
@@ -44,7 +44,9 @@ const TrendingCard = (props) => {
         <div className="">
           <h4 className="text-orange group-hover:text-white">
             ${props.price}
-            <del className="text-steel-gray ml-4 group-hover:text-white">$8.49</del>{" "}
+            <del className="text-steel-gray ml-4 group-hover:text-white">
+              $8.49
+            </del>{" "}
           </h4>
         </div>
         <div className="p-2 mt-4 rounded-full group-hover:text-orange bg-orange group-hover:bg-white  text-white duration-300 inline-block cursor-pointer">

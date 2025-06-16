@@ -6,8 +6,8 @@ import { useState } from "react";
 import UseAuth from "../../hooks/UseAuth";
 
 const SignUpPage = () => {
-    const{signUpUser,updateUser}= UseAuth()
-    const navigate = useNavigate()
+  const { signUpUser, updateUser } = UseAuth();
+  const navigate = useNavigate();
   const [errormessage, setErrormessage] = useState("");
   const handleSingUP = (e) => {
     e.preventDefault();
@@ -36,71 +36,65 @@ const SignUpPage = () => {
       setErrormessage("Password must be at least 6 characters long.");
     } else {
       console.log("oky");
-      setErrormessage('')
+      setErrormessage("");
       signUpUser(email, password)
-      .then(result =>{
-        console.log(result)
-        navigate('/')
-        const profile = {
-            displayName:name,
-            photoURL: photoURL
-        }
-        return updateUser(profile)
-        .then(restult =>{
-            console.log(restult)
+        .then((result) => {
+          console.log(result);
+          navigate("/");
+          const profile = {
+            displayName: name,
+            photoURL: photoURL,
+          };
+          return updateUser(profile)
+            .then((restult) => {
+              console.log(restult);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
-        .catch(err =>{
-            console.log(err)
-        })
-      })
-      .catch(err=>{
-        console.log(err)
-      })
-
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
   return (
-    <div className="relative pt-10 bg-white z-0 after:absolute after:w-1/2 after:h-2/3 after:bg-[rgba(234,106,18,0.2)] after:right-0 after:-top-5 after:rounded-bl-full after:z-[-1]">
+    <div className="relative pt-10 dark:bg-dark-black bg-white z-0 after:absolute after:w-1/2 after:h-2/3 after:bg-[rgba(234,106,18,0.2)] after:right-0 after:-top-5 after:rounded-bl-full after:z-[-1]">
       <div className="containerr">
         <div className="lg:grid xl:grid-cols-3 lg:grid-cols-2 items-center">
           <div className="w-full">
-            {/* <div className=" my-5">
-              <Link to="/">
-                <img className="w-1/3 lg:mx-0 mx-auto" src={logo} alt="lgog" />
-              </Link>
-            </div> */}
-            <h2 className="font-semibold text-center text-midnight-navy text-4xl">
+            <h2 className="font-semibold text-center dark:text-white text-midnight-navy text-4xl">
               Sign Up
             </h2>
-            <p className="text-lg text-center text-steel-gray  my-4">
+            <p className="text-lg text-center text-steel-gray dark:text-white  my-4">
               Create your Aprycot account.
             </p>
             <form onSubmit={handleSingUP} className="flex flex-col gap-y-2">
-              <label className="text-lg text-steel-gray">Name</label>
+              <label className="text-lg text-steel-gray dark:text-white">Name</label>
               <input
-                className="w-full border border-steel-gray rounded-full px-4  py-3"
+                className="w-full border border-steel-gray rounded-full px-4  py-3 dark:placeholder:text-white dark:text-white "
                 type="text"
                 name="name"
                 placeholder="Enter your Name"
               />
-              <label className="text-lg text-steel-gray">Photo URL</label>
+              <label className="text-lg text-steel-gray dark:text-white">Photo URL</label>
               <input
-                className="w-full border border-steel-gray rounded-full px-4  py-3"
+                className="w-full border border-steel-gray rounded-full px-4  py-3 dark:placeholder:text-white dark:text-white "
                 type="url"
                 name="photoURL"
                 placeholder="Enter your Photo URL"
               />
-              <label className="text-lg text-steel-gray">Email</label>
+              <label className="text-lg text-steel-gray dark:text-white">Email</label>
               <input
-                className="w-full border border-steel-gray rounded-full px-4  py-3"
+                className="w-full border border-steel-gray rounded-full px-4  py-3 dark:placeholder:text-white dark:text-white "
                 type="email"
                 name="email"
                 placeholder="Enter your email"
               />
-              <label className="text-lg text-steel-gray">Password</label>
+              <label className="text-lg text-steel-gray dark:text-white">Password</label>
               <input
-                className="w-full border border-steel-gray rounded-full px-4  py-3"
+                className="w-full border border-steel-gray rounded-full px-4  py-3 dark:placeholder:text-white dark:text-white "
                 type="password"
                 name="password"
                 placeholder="Enter your password"
@@ -108,7 +102,7 @@ const SignUpPage = () => {
               {errormessage && <p className="text-red-500">{errormessage}</p>}
               <div className="flex items-center gap-x-2 my-3">
                 <input type="checkbox" name="" id="" />
-                <label className="text-steel-gray">
+                <label className="text-steel-gray dark:text-white">
                   I agree with the terms of use
                 </label>
               </div>
@@ -120,11 +114,11 @@ const SignUpPage = () => {
               </button>
             </form>
 
-            <p className="text-center text-lg py-4 text-steel-gray">
+            <p className="text-center text-lg py-4 text-steel-gray dark:text-white">
               or sign in with other accounts?
             </p>
             <SocialLogIn />
-            <h4 className="text-center text-lg text-steel-gray">
+            <h4 className="text-center text-lg text-steel-gray dark:text-white">
               Don’t have an account?{" "}
               <Link to="/signin" className="text-orange">
                 Click here to sign In.
