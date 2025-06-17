@@ -39,7 +39,7 @@ const DetailsPage = () => {
 
           <div className="flex flex-wrap gap-4 mt-4">
             <span className="flex items-center gap-2 bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
-              <AiFillStar className="text-yellow-500" /> Sold: {purchase_count}
+              <AiFillStar className="text-yellow-500" /> Purchase: {purchase_count}
             </span>
             <span className="flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full">
               <MdOutlineAttachMoney /> Price: {price}

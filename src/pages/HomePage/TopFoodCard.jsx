@@ -32,7 +32,7 @@ const TopFoodCard = ({ data }) => {
             {category}
           </span>
           <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full">
-            Sold: {purchase_count}
+            Purchase: {purchase_count}
           </span>
         </div>
         <div className="flex justify-between text-sm text-gray-600 mt-4">

@@ -10,55 +10,76 @@ const PurchasePage = () => {
   const data = useLoaderData();
   const { placeOrder } = useOrderApi();
 
-  const { food_name, price, quantity, food_image, _id, email, purchase_count } =
-    data || {};
-    console.log(quantity)
+  const {
+    food_name,
+    price,
+    quantity,
+    food_image,
+    _id,
+    email,
+    purchase_count,
+  } = data || {};
 
   const [quantityNum, setQuantity] = useState(quantity);
   const [purchaseCount, setPurchaseCount] = useState(purchase_count);
+  const [orderQuantity, setOrderQuantity] = useState(1); 
 
   const handlePurchase = (e) => {
     e.preventDefault();
+
+    if (orderQuantity <= 0) {
+      return Swal.fire({
+        icon: "error",
+        title: "Invalid quantity",
+        text: "Please enter a valid quantity.",
+        confirmButtonColor: "#f97316",
+      });
+    }
+
+    if (orderQuantity > quantityNum) {
+      return Swal.fire({
+        icon: "error",
+        title: "Insufficient stock",
+        text: `Only ${quantityNum} items available in stock.`,
+        confirmButtonColor: "#f97316",
+      });
+    }
+
+    if (user?.email === email) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Oops!",
+        text: "This is your own product. You cannot order it!",
+        confirmButtonColor: "#f97316",
+      });
+    }
+
     const orderData = {
       food_name,
       food_image,
       price,
       product_id: _id,
-      order_quantity: 1,
+      order_quantity: orderQuantity,
       buyer_name: user?.displayName,
       buyer_email: user?.email,
+      food_owner: email,
       date: Date.now(),
     };
-if (quantityNum <= 0) {
-  return Swal.fire({
-    icon: "error",
-    title: "Sorry!",
-    text: "This product is out of stock.",
-    confirmButtonColor: "#f97316",
-  });
-}
 
-if (user?.email === email) {
-  return Swal.fire({
-    icon: "warning",
-    title: "Oops!",
-    text: "This is your own product. You cannot order it!",
-    confirmButtonColor: "#f97316", 
-  });
-}
     placeOrder(_id, orderData)
-      .then(data => {
+      .then((data) => {
         if (data?.acknowledged || data?.modifiedCount > 0) {
           Swal.fire({
             title: "Good job!",
-            text: "Order successfully",
+            text: "Order successfully placed.",
             icon: "success",
           });
-          setPurchaseCount(prev => prev + 1);
-          setQuantity(prev => prev - 1);
+          setPurchaseCount((prev) => prev + orderQuantity);
+          setQuantity((prev) => prev - orderQuantity);
+          setOrderQuantity(1);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
         Swal.fire({
           title: "Error!",
@@ -67,6 +88,7 @@ if (user?.email === email) {
         });
       });
   };
+  
 
   return (
     <div className="containerr pt-10 ">
@@ -96,6 +118,7 @@ if (user?.email === email) {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
               />
             </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-white ">
                 Price
@@ -107,6 +130,7 @@ if (user?.email === email) {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
               />
             </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-white ">
                 Available Quantity
@@ -118,6 +142,7 @@ if (user?.email === email) {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
               />
             </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-white ">
                 Total Purchases
@@ -129,6 +154,7 @@ if (user?.email === email) {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
               />
             </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-white ">
                 Buyer Name
@@ -140,6 +166,7 @@ if (user?.email === email) {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
               />
             </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-white ">
                 Buyer Email
@@ -151,13 +178,36 @@ if (user?.email === email) {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
               />
             </div>
-              <button
-                type="submit"
-                className="w-full cursor-pointer bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition duration-300"
-              >
-                {quantityNum === 0 ? '❌ No product available' :' Purchase Now'}
-               
-              </button>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-white ">
+                Order Quantity
+              </label>
+              <input
+                type="number"
+                min={1}
+                max={quantityNum}
+                value={orderQuantity}
+                onChange={(e) =>
+                  setOrderQuantity(
+                    Math.min(
+                      Math.max(1, Number(e.target.value) || 1),
+                      quantityNum
+                    )
+                  )
+                }
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
+              />
+              
+            </div>
+
+            <button
+              type="submit"
+              className="w-full cursor-pointer bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+              disabled={quantityNum === 0}
+            >
+              {quantityNum === 0 ? "❌ No product available" : "Purchase Now"}
+            </button>
           </form>
         </div>
       </div>

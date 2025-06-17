@@ -68,7 +68,7 @@ const OrderList = ({ myOrders }) => {
       ) : (
         <>
           {/* Desktop Table */}
-          <div className="hidden md:block overflow-x-auto shadow-lg rounded-lg border border-orange-300">
+          <div className="hidden lg:block overflow-x-auto shadow-lg rounded-lg border border-orange-300">
             <table className="min-w-full bg-white dark:bg-dark-black divide-y divide-orange-200">
               <thead className="bg-orange-100 text-orange-800">
                 <tr>
@@ -80,6 +80,9 @@ const OrderList = ({ myOrders }) => {
                   </th>
                   <th className="px-4 py-3 text-left text-base font-semibold">
                     Price
+                  </th>
+                  <th className="px-4 py-3  text-base text-center font-semibold">
+                   Food Owner
                   </th>
                   <th className="px-4 py-3  text-base text-center font-semibold">
                     Order Quantity
@@ -105,6 +108,9 @@ const OrderList = ({ myOrders }) => {
                     <td className="px-4 py-3">{food.food_name}</td>
                     <td className="px-4 py-3">${food.price}</td>
                     <td className="px-4 py-3 text-center">
+                      {food.food_owner}
+                    </td>
+                    <td className="px-4 py-3 text-center">
                       {food.order_quantity}
                     </td>
                     <td className="px-4 py-3 text-center">
@@ -125,7 +131,7 @@ const OrderList = ({ myOrders }) => {
           </div>
 
           {/* Mobile Card View */}
-          <div className="md:hidden space-y-4">
+          <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-4 space-y-4">
             {orders?.map((food) => (
               <div
                 key={food._id}
@@ -146,6 +152,9 @@ const OrderList = ({ myOrders }) => {
                     </p>
                     <p className="text-sm text-gray-700">
                       Quantity: {food.order_quantity}
+                    </p>
+                    <p className="text-sm text-gray-700">
+                      Food Owner: {food.food_owner}
                     </p>
                     <p className="text-sm text-gray-700">
                       Order Time:{" "}
