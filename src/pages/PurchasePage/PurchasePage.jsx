@@ -10,19 +10,12 @@ const PurchasePage = () => {
   const data = useLoaderData();
   const { placeOrder } = useOrderApi();
 
-  const {
-    food_name,
-    price,
-    quantity,
-    food_image,
-    _id,
-    email,
-    purchase_count,
-  } = data || {};
+  const { food_name, price, quantity, food_image, _id, email, purchase_count } =
+    data || {};
 
   const [quantityNum, setQuantity] = useState(quantity);
   const [purchaseCount, setPurchaseCount] = useState(purchase_count);
-  const [orderQuantity, setOrderQuantity] = useState(1); 
+  const [orderQuantity, setOrderQuantity] = useState(0);
 
   const handlePurchase = (e) => {
     e.preventDefault();
@@ -30,7 +23,7 @@ const PurchasePage = () => {
     if (orderQuantity <= 0) {
       return Swal.fire({
         icon: "error",
-        title: "Invalid quantity",
+        title: "Please enter your Quantity",
         text: "Please enter a valid quantity.",
         confirmButtonColor: "#f97316",
       });
@@ -88,7 +81,6 @@ const PurchasePage = () => {
         });
       });
   };
-  
 
   return (
     <div className="containerr pt-10 ">
@@ -185,20 +177,10 @@ const PurchasePage = () => {
               </label>
               <input
                 type="number"
-                min={1}
-                max={quantityNum}
-                value={orderQuantity}
-                onChange={(e) =>
-                  setOrderQuantity(
-                    Math.min(
-                      Math.max(1, Number(e.target.value) || 1),
-                      quantityNum
-                    )
-                  )
-                }
+                min={0}
+                onChange={(e) => setOrderQuantity(Number(e.target.value))}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
               />
-              
             </div>
 
             <button
