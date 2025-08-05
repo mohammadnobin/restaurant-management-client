@@ -1,3 +1,4 @@
+// all foods page here
 import React, { useEffect, useState } from "react";
 import PagesBanner from "../Shared/PagesBanner";
 import TopFoodCard from "../HomePage/TopFoodCard";
