@@ -1,3 +1,4 @@
+// RootLayout code here
 import React from "react";
 import { Outlet, ScrollRestoration, useNavigation } from "react-router";
 import Navbar from "../pages/Shared/Navbar";
