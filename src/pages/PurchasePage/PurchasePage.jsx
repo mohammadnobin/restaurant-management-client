@@ -1,3 +1,4 @@
+// purchasePage code here
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import UseAuth from "../../hooks/UseAuth";
