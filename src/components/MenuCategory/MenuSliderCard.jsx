@@ -1,3 +1,4 @@
+// menu slider card here
 import React from "react";
 import { RiArrowRightSLine } from "react-icons/ri";
 
