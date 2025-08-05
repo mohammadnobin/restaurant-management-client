@@ -1,3 +1,4 @@
+// food detils page
 import React from "react";
 import { Link, useLoaderData } from "react-router";
 import { AiFillStar } from "react-icons/ai";
