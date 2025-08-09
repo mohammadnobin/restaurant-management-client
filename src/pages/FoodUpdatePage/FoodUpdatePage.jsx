@@ -1,3 +1,4 @@
+// food gallery all code write here
 import React from "react";
 import UseAuth from "../../hooks/UseAuth";
 import { useLoaderData } from "react-router";
