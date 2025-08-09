@@ -10,8 +10,6 @@ const TopFoodCard = ({ data }) => {
     price,
     food_name,
     food_image,
-    category,
-    purchase_count,
   } = data;
 
   return (
@@ -23,18 +21,13 @@ const TopFoodCard = ({ data }) => {
       />
 
       <div className="pt-4 px-2 text-center">
-        <h2 className="text-xl font-semibold dark:text-white text-gray-800 mb-1">
+
+
+        <div className="flex justify-between text-sm text-gray-600 mt-4">
+                  <h2 className="text-xl font-semibold dark:text-white text-gray-800 mb-1">
           {food_name}
         </h2>
         <p className="text-orange  text-lg font-bold mb-2">${price}</p>
-
-        <div className="flex justify-between text-sm text-gray-600 mt-4">
-          <span className="bg-orange-100 text-orange px-3 py-1 rounded-full">
-            {category}
-          </span>
-          <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full">
-            Purchase: {purchase_count}
-          </span>
         </div>
         <div className="flex justify-between text-sm text-gray-600 mt-4">
           <p className="font-medium  dark:text-white ">

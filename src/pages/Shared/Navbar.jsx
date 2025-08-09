@@ -3,9 +3,11 @@ import UseAuth from "../../hooks/UseAuth";
 import logo from "../../assets/logo.svg";
 import { useEffect, useState } from "react";
 import { ImCross } from "react-icons/im";
-import { FaHome, FaUtensils, FaImages, FaBars } from "react-icons/fa";
+import { FaHome, FaUtensils, FaImages, FaBars, FaShoppingCart } from "react-icons/fa";
 import { MdClose, MdDarkMode, MdOutlineWbSunny } from "react-icons/md";
 import Swal from "sweetalert2";
+import { FaBowlFood } from "react-icons/fa6";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
@@ -84,7 +86,7 @@ const Navbar = () => {
     <>
       <li>
         <NavLink
-          className="flex items-center gap-x-2 text-lg text-steel-gray font-bold "
+          className="flex items-center gap-x-2 text-base text-steel-gray font-bold "
           to="/"
         >
           <FaHome /> Home
@@ -92,7 +94,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className="flex items-center gap-x-2 text-lg text-steel-gray font-bold "
+          className="flex items-center gap-x-2 text-base text-steel-gray font-bold "
           to="/all_foods"
         >
           <FaUtensils /> All Foods
@@ -100,7 +102,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className="flex items-center gap-x-2 text-lg text-steel-gray font-bold "
+          className="flex items-center gap-x-2 text-base text-steel-gray font-bold "
           to="/gallery"
         >
           <FaImages /> Gallery
@@ -123,8 +125,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="fixed top-0 z-50 shadow-2xl w-full dark:bg-dark-black   bg-white">
-      <div className="containerr py-4">
+    <nav className="sticky top-0 border-orange border-b-2 z-50 shadow-2xl w-full dark:bg-dark-black   bg-white">
+      <div className="containerr py-2">
         {/* small devise design */}
         <div className="lg:hidden  grid grid-cols-3 items-center justify-between">
           <div className="dark:text-white flex items-center gap-x-4">
@@ -214,13 +216,47 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="">
-            <ul className="flex items-center gap-x-6">{navitem}</ul>
+            <ul className="flex items-center gap-x-6">
+              {navitem}
+              {user && 
+              <>
+              <li>
+        <NavLink
+          className="flex items-center gap-x-2 text-base text-steel-gray font-bold "
+          to="/my_foods"
+        >
+          <FaBowlFood /> My Foods
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className="flex items-center gap-x-2 text-base text-steel-gray font-bold "
+          to="/my_orders"
+        >
+          <FaShoppingCart /> My Orders
+        </NavLink>
+      </li>
+
+              </>
+              }
+            </ul>
+
           </div>
           <div className=" flex items-center gap-x-4">
+                        <button
+              className="text-black dark:text-white  cursor-pointer "
+              onClick={toggleDarkMode}
+            >
+              {darkMode ? (
+                <MdOutlineWbSunny size={30} />
+              ) : (
+                <MdDarkMode size={30} />
+              )}
+            </button>
             {user ? (
               <div className="flex items-center gap-x-4 ">
                 <div className="dropdown dropdown-bottom dropdown-center">
-                  <div
+                  {/* <div
                     tabIndex={0}
                     role="button"
                     className="size-14 cursor-pointer group relative"
@@ -229,24 +265,43 @@ const Navbar = () => {
                       {user?.displayName}
                     </div>
                     <img
-                      className="size-14 rounded-full"
+                      className="size-12 rounded-full"
                       src={user?.photoURL}
                       alt=""
                     />
-                  </div>
+                  </div> */}
+
+ {/* Dropdown btn */}
+                      <div
+                  tabIndex={0}
+                    role="button"
+                        className="p-4 md:py-1 md:px-2 border-2 border-orange/50 dark:border-white/50 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+                      >
+                        <AiOutlineMenu className="text-orange dark:text-white" />
+                        <div className="hidden md:block">
+                          {/* Avatar */}
+                          <img
+                            className="rounded-full size-10"
+                            referrerPolicy="no-referrer"
+                            src={user && user.photoURL}
+                            alt="profile"
+                          />
+                        </div>
+                      </div>
+
                   <ul
                     tabIndex={0}
                     className="dropdown-content menu space-y-2  w-52 p-2 bg-orange"
                   >
                     {PrivateItem}
-                  </ul>
-                </div>
-                <button
-                  className="py-3 px-6 bg-orange text-white font-bold rounded-xl cursor-pointer"
+                                    <button
+                  className="py-3 px-6 border border-white bg-orange text-white font-bold rounded-xl cursor-pointer"
                   onClick={handleSignOut}
                 >
                   Log OUt
                 </button>
+                  </ul>
+                </div>
               </div>
             ) : (
               <div className=" flex items-center gap-x-4">
@@ -262,16 +317,6 @@ const Navbar = () => {
                 </Link>
               </div>
             )}
-            <button
-              className="text-black dark:text-white  cursor-pointer "
-              onClick={toggleDarkMode}
-            >
-              {darkMode ? (
-                <MdOutlineWbSunny size={30} />
-              ) : (
-                <MdDarkMode size={30} />
-              )}
-            </button>
           </div>
         </div>
       </div>

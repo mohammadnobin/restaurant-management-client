@@ -10,9 +10,7 @@ const RootLayout = () => {
   return (
     <div>
       <Navbar />
-      <div className="mt-20">
       {state == "loading" ? <Loading /> : <Outlet />}
-      </div>
       <ScrollRestoration />
       <Footer />
     </div>
