@@ -1,3 +1,4 @@
+// gallery main page code here
 import React from "react";
 import Gallerydoc from "./Gallerydoc";
 import PagesBanner from "../Shared/PagesBanner";
