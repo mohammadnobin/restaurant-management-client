@@ -1,3 +1,4 @@
+// banner section code here
 import React from "react";
 import { Link } from "react-router";
 
