@@ -1,3 +1,4 @@
+// Error page all code here
 import React from "react";
 import error from "../../assets/ErrorPage/error.png";
 import error2 from "../../assets/ErrorPage/error2.png";
