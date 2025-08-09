@@ -1,3 +1,4 @@
+// Home page code here
 import { Suspense } from "react";
 import MenuCategory from "../../components/MenuCategory/MenuCategory";
 import TrendingOrders from "../../components/TrendingOrders/TrendingOrders";
