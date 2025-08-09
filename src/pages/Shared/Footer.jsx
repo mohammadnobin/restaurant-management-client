@@ -1,3 +1,4 @@
+// footer page all code
 import React from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
 import logo from "../../assets/logo.jpg";
