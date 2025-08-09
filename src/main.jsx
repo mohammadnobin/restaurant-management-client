@@ -1,3 +1,4 @@
+// this is main pages added alll providre and make secure 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
