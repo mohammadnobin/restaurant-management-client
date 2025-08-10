@@ -125,7 +125,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="sticky top-0 border-orange border-b-2 z-50 shadow-2xl w-full dark:bg-dark-black   bg-white">
+    <nav className="sticky top-0 border-orange dark:border-white border-b-2 z-50 shadow-2xl w-full dark:bg-dark-black   bg-white">
       <div className="containerr py-2">
         {/* small devise design */}
         <div className="lg:hidden  grid grid-cols-3 items-center justify-between">
