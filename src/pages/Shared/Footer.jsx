@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <footer className=" bg-white text-black dark:text-white dark:bg-dark-black border-t-2 border-white py-10 mt-10">
+    <footer className=" bg-white text-black dark:text-white dark:bg-dark-black border-t-2 border-white py-10 ">
       <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 gap-8">
         <div>
           <div

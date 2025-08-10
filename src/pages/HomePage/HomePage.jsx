@@ -6,6 +6,7 @@ import TopSellingFoods from "./TopSellingFoods";
 import { toSellingFoods } from "../../api/TopSellingFood";
 import Banner from "./Banner";
 import Loading from "../Shared/Loading";
+import LatestNewsBlogs from "./LatestNewsBlogs";
 
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
             </Suspense>
             <MenuCategory />
             <TrendingOrders />
+            <LatestNewsBlogs />
         </>
     );
 };
