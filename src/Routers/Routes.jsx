@@ -14,6 +14,7 @@ import PurchasePage from "../pages/PurchasePage/PurchasePage";
 import Loading from "../pages/Shared/Loading";
 import FoodUpdatePage from "../pages/FoodUpdatePage/FoodUpdatePage";
 import GalleryPage from "../pages/Gallery/GalleryPage";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -95,6 +96,13 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      
     ],
   },
   {
