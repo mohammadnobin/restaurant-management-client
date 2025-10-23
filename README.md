@@ -1,8 +1,8 @@
-# 🍽️ Restaurant Management Website - MERN Stack Project
+# 🍽️ Restaurant Management Website - MERN Stack Project (Updated Features)
 
 A full-stack Restaurant Management system built with **MERN (MongoDB, Express, React, Node.js)**, designed to enhance customer experience, streamline food ordering, and simplify restaurant operations.
 
-Live URL: [https://assignment-eleven-3badc.web.app/](https://assignment-eleven-3badc.web.app/)  
+Live URL: [https://assignment-eleven-3badc.web.app/](https://assignment-eleven-3badc.web.app/)
 
 ---
 
@@ -37,12 +37,18 @@ Admins or logged-in users can:
 - **All Foods Page** – View all food items with search & quantity display.
 - **Gallery Page** – Shows static food images with lightbox effect.
 - **Single Food Page** – View food details with purchase button.
+- **Contact Page** – Submit inquiries or feedback.
+- **FAQ Page** – Frequently Asked Questions for user reference.
+- **Blogs Page** – Display restaurant-related blogs.
 
-### 🔒 Private Pages
+### 🔒 Private Pages / Dashboard
 - **Add Food** – Add food items with rich info.
 - **My Foods** – See all foods added by logged-in user with update option.
 - **My Orders** – View and delete own orders with date & time.
 - **Food Purchase** – Purchase form with quantity control, disabled if unavailable.
+- **Dashboard Component** – Unified dashboard for admins and users with enhanced layout.
+- **Responsive DashboardLayout** – Refactored for mobile devices.
+- **Navbar Improvements** – Easier navigation with quick access to new pages.
 
 ---
 
@@ -55,6 +61,8 @@ Admins or logged-in users can:
 - ✅ JWT Token implemented with route protection.
 - ✅ Theme toggling (light/dark).
 - ✅ Profile image dropdown with quick links.
+- ✅ Mobile-responsive Dashboard layout.
+- ✅ New pages: Contact, FAQ, Blogs integrated into routing.
 
 ---
 
@@ -88,11 +96,5 @@ Admins or logged-in users can:
 
 ---
 
-## ✅ Deployment
+## 🛠️ Project Structure
 
-- ✅ Client: Netlify deployed with working routes on reload.
-- ✅ Server: Render deployed with CORS enabled and no 404/504 issues.
-- ✅ Firebase authorized domains configured correctly.
-- ✅ Private routes remain logged in after page reload.
-
----
