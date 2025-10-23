@@ -10,7 +10,9 @@ const AllFoodsPage = () => {
 
   useEffect(() => {
     axios(
-      `${import.meta.env.VITE_API_URL}/all_foods?searchparams=${search}&sort=${sortOrder}`
+      `${
+        import.meta.env.VITE_API_URL
+      }/all_foods?searchparams=${search}&sort=${sortOrder}`
     ).then((res) => setAllFoods(res.data));
   }, [search, sortOrder]);
 

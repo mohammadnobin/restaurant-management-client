@@ -14,7 +14,11 @@ import PurchasePage from "../pages/PurchasePage/PurchasePage";
 import Loading from "../pages/Shared/Loading";
 import FoodUpdatePage from "../pages/FoodUpdatePage/FoodUpdatePage";
 import GalleryPage from "../pages/Gallery/GalleryPage";
+import ContactPage from "../pages/ContactPage/ContactPage";
+import FAQPage from "../pages/FAQPage/FAQPage";
+import BlogsPage from "../pages/BlogsPage/BlogsPage";
 import DashboardLayout from "../layouts/DashboardLayout";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +55,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/update_food/:id",
-         loader: ({ params }) =>
+        loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/food/${params.id}`),
         hydrateFallbackElement: <Loading />,
         element: (
@@ -65,6 +69,18 @@ export const router = createBrowserRouter([
         element: <GalleryPage />,
       },
       {
+        path: "/contact",
+        element: <ContactPage />,
+      },
+      {
+        path: "/faq",
+        element: <FAQPage />,
+      },
+      {
+        path: "/blogs",
+        element: <BlogsPage />,
+      },
+      {
         path: "/signup",
         element: <SignUpPage />,
       },
@@ -72,8 +88,18 @@ export const router = createBrowserRouter([
         path: "/signin",
         element: <SignInPage />,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
       {
-        path: "/add_food",
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "add_food",
         element: (
           <PrivateRoute>
             <AddFoodPage />
@@ -81,7 +107,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/my_foods",
+        path: "my_foods",
         element: (
           <PrivateRoute>
             <MyFoodsPage />
@@ -89,20 +115,13 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/my_orders",
+        path: "my_orders",
         element: (
           <PrivateRoute>
             <MyOrdersPage />
           </PrivateRoute>
         ),
       },
-    ],
-  },
-  {
-    path: "/dashboard",
-    element: <DashboardLayout />,
-    children: [
-      
     ],
   },
   {

@@ -218,7 +218,7 @@
 //           <div className="">
 //             <ul className="flex items-center gap-x-6">
 //               {navitem}
-//               {user && 
+//               {user &&
 //               <>
 //               <li>
 //         <NavLink
@@ -326,29 +326,87 @@
 
 // export default Navbar;
 
-
-
-import React, { useState, useEffect } from 'react';
-import { Home, UtensilsCrossed, Images, ChefHat, ShoppingCart, User, Menu, X, Sun, Moon, ChevronDown } from 'lucide-react';
-
-// Mock user data - replace with your actual auth
-const mockUser = {
-  displayName: "John Doe",
-  photoURL: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80"
-};
+import React, { useState, useEffect } from "react";
+import { Link, NavLink } from "react-router";
+import {
+  Home,
+  UtensilsCrossed,
+  Images,
+  ChefHat,
+  ShoppingCart,
+  User,
+  Menu,
+  X,
+  Sun,
+  Moon,
+  ChevronDown,
+  Phone,
+  HelpCircle,
+  BookOpen,
+} from "lucide-react";
+import UseAuth from "../../hooks/UseAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const [user, setUser] = useState(mockUser); // Set to null for logged out state
+  const { user, signOutUser } = UseAuth();
   const [show, setShow] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== "undefined") {
+      if (localStorage.theme) {
+        return localStorage.theme === "dark";
+      } else {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+      }
+    }
+    return false;
+  });
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   const handleSignOut = () => {
-    if (confirm("Are you sure you want to sign out?")) {
-      setUser(null);
-      alert("You have been signed out successfully.");
-    }
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, sign out!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          signOutUser()
+            .then(() => {
+              swalWithBootstrapButtons.fire({
+                title: "Signed out!",
+                text: "You have been signed out successfully.",
+                icon: "success",
+              });
+            })
+            .catch((err) => {
+              swalWithBootstrapButtons.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.message || "Something went wrong!",
+              });
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "You are still logged in 🙂",
+            icon: "info",
+          });
+        }
+      });
   };
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
@@ -357,43 +415,70 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (darkMode) {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
   const navLinks = [
-    { path: '/', label: 'Home', icon: <Home className="w-4 h-4" /> },
-    { path: '/all_foods', label: 'All Foods', icon: <UtensilsCrossed className="w-4 h-4" /> },
-    { path: '/gallery', label: 'Gallery', icon: <Images className="w-4 h-4" /> },
+    { path: "/", label: "Home", icon: <Home className="w-4 h-4" /> },
+    {
+      path: "/all_foods",
+      label: "All Foods",
+      icon: <UtensilsCrossed className="w-4 h-4" />,
+    },
+    {
+      path: "/gallery",
+      label: "Gallery",
+      icon: <Images className="w-4 h-4" />,
+    },
+    { path: "/blogs", label: "Blogs", icon: <BookOpen className="w-4 h-4" /> },
+    { path: "/faq", label: "FAQ", icon: <HelpCircle className="w-4 h-4" /> },
+    { path: "/contact", label: "Contact", icon: <Phone className="w-4 h-4" /> },
   ];
 
   const userLinks = [
-    { path: '/my_foods', label: 'My Foods', icon: <ChefHat className="w-4 h-4" /> },
-    { path: '/my_orders', label: 'My Orders', icon: <ShoppingCart className="w-4 h-4" /> },
+    {
+      path: "/dashboard",
+      label: "Dashboard",
+      icon: <ChefHat className="w-4 h-4" />,
+    },
   ];
 
   const NavButton = ({ link, onClick }) => (
-    <a
-      href={link.path}
+    <NavLink
+      to={link.path}
       onClick={(e) => {
         if (onClick) {
           e.preventDefault();
           onClick();
         }
       }}
-      className="flex items-center gap-2 px-4 py-2 text-base font-medium text-gray-700 hover:text-orange-500 transition-colors"
+      className="flex items-center dark:text-white gap-2 px-4 py-2 text-base font-medium text-gray-700  hover:text-orange-500 transition-colors"
     >
       {link.icon}
       {link.label}
-    </a>
+    </NavLink>
   );
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200' 
-        : 'bg-white/80 backdrop-blur-sm border-b border-white/20'
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-md shadow-lg border-b dark:bg-dark-black border-gray-200"
+          : "bg-white/80 backdrop-blur-sm border-b dark:bg-dark-black border-white/20"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Mobile Layout */}
         <div className="lg:hidden flex items-center justify-between h-16">
@@ -406,35 +491,43 @@ const Navbar = () => {
           </button>
 
           {/* Center: Logo */}
-          <a href="/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <div className="text-2xl font-bold">
-              <span className="text-gray-900">Taste</span>
+              <span className="text-gray-900 dark:text-white">Taste</span>
               <span className="text-orange-500">Hub</span>
             </div>
-          </a>
+          </Link>
 
           {/* Right: User/Auth */}
           <div className="flex items-center gap-2">
             <button
               onClick={toggleDarkMode}
-              className="p-2 text-gray-800 hover:text-orange-500 transition-colors"
+              className="p-2 text-gray-800 cursor-pointer hover:text-orange-500 transition-colors"
             >
-              {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {darkMode ? (
+                <Sun className="w-5 h-5 " />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
             </button>
-            
+
             {user ? (
-              <button 
+              <button
                 onClick={() => setShowUserMenu(!showUserMenu)}
                 className="w-9 h-9 rounded-full overflow-hidden border-2 border-orange-500"
               >
-                <img src={user.photoURL} alt={user.displayName} className="w-full h-full object-cover" />
+                <img
+                  src={user.photoURL}
+                  alt={user.displayName}
+                  className="w-full h-full object-cover"
+                />
               </button>
             ) : (
-              <a href="/signup">
+              <Link to="/signup">
                 <button className="px-4 py-2 bg-orange-500 text-white text-sm font-medium hover:bg-orange-600 transition-colors rounded">
                   Sign Up
                 </button>
-              </a>
+              </Link>
             )}
           </div>
         </div>
@@ -444,36 +537,36 @@ const Navbar = () => {
           <div className="lg:hidden border-t border-gray-200 bg-white">
             <div className="py-4 space-y-1">
               {navLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.path}
-                  href={link.path}
+                  to={link.path}
                   onClick={() => setShow(false)}
-                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-orange-500 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                 >
                   {link.icon}
                   {link.label}
-                </a>
+                </NavLink>
               ))}
-              
+
               {user && (
                 <>
                   <div className="border-t border-gray-200 my-2"></div>
                   {userLinks.map((link) => (
-                    <a
+                    <NavLink
                       key={link.path}
-                      href={link.path}
+                      to={link.path}
                       onClick={() => setShow(false)}
-                      className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:text-orange-500 hover:bg-gray-50 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-orange-500 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                     >
                       {link.icon}
                       {link.label}
-                    </a>
+                    </NavLink>
                   ))}
-                  <a href="/add_food" onClick={() => setShow(false)}>
+                  <NavLink to="/dashboard" onClick={() => setShow(false)}>
                     <button className="mx-4 mt-2 w-[calc(100%-2rem)] py-3 bg-orange-500 text-white font-medium hover:bg-orange-600 transition-colors rounded">
-                      Add Food
+                      Dashboard
                     </button>
-                  </a>
+                  </NavLink>
                   <button
                     onClick={() => {
                       handleSignOut();
@@ -492,20 +585,16 @@ const Navbar = () => {
         {/* Desktop Layout */}
         <div className="hidden lg:flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center">
-            <div className="text-3xl font-bold">
-              <span className="text-gray-900">Taste</span>
+          <Link to="/" className="flex items-center">
+            <div className="text-3xl font-bold dark:text-white">
+              <span className="text-gray-900 dark:text-white">Taste</span>
               <span className="text-orange-500">Hub</span>
             </div>
-          </a>
+          </Link>
 
           {/* Navigation Links */}
           <div className="flex items-center gap-1">
             {navLinks.map((link) => (
-              <NavButton key={link.path} link={link} />
-            ))}
-            
-            {user && userLinks.map((link) => (
               <NavButton key={link.path} link={link} />
             ))}
           </div>
@@ -514,20 +603,24 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <button
               onClick={toggleDarkMode}
-              className="p-2 text-gray-800 hover:text-orange-500 transition-colors"
+              className="p-2 text-gray-800 cursor-pointer dark:text-white hover:text-orange-500 transition-colors"
             >
-              {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+              {darkMode ? (
+                <Sun className="w-6 h-6" />
+              ) : (
+                <Moon className="w-6 h-6" />
+              )}
             </button>
 
             {user ? (
               <div className="relative">
-                <button 
+                <button
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center gap-3 px-3 py-2 border-2 border-gray-200 hover:border-orange-500 rounded-full transition-all duration-300"
+                  className="flex items-center gap-3 px-3 cursor-pointer py-2 border-2 border-gray-200 hover:border-orange-500 rounded-full transition-all duration-300"
                 >
-                  <Menu className="w-4 h-4 text-gray-700" />
-                  <img 
-                    src={user.photoURL} 
+                  <Menu className="w-4 h-4 dark:text-white text-gray-700" />
+                  <img
+                    src={user.photoURL}
                     alt={user.displayName}
                     className="w-9 h-9 rounded-full object-cover"
                   />
@@ -535,24 +628,28 @@ const Navbar = () => {
 
                 {/* Dropdown */}
                 {showUserMenu && (
-                  <div className="absolute right-0 top-full mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-xl">
+                  <div className="absolute dark:bg-dark-black dark:border-white dr right-0 top-full mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-xl">
                     <div className="p-4 border-b border-gray-200">
-                      <p className="text-sm font-semibold text-gray-900">{user.displayName}</p>
-                      <p className="text-xs text-gray-500 mt-1">Manage your account</p>
+                      <p className="text-sm font-semibold dark:text-white text-gray-900">
+                        {user.displayName}
+                      </p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Manage your account
+                      </p>
                     </div>
-                    
+
                     <div className="p-2">
-                      <a href="/add_food">
-                        <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors rounded">
-                          Add Food
+                      <NavLink to="/dashboard">
+                        <button className="w-full cursor-pointer text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-orange-900/20 hover:text-orange-500 transition-colors rounded">
+                          Dashboard
                         </button>
-                      </a>
+                      </NavLink>
                       <button
                         onClick={() => {
                           handleSignOut();
                           setShowUserMenu(false);
                         }}
-                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500 transition-colors rounded"
+                        className="w-full cursor-pointer text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-orange-900/20 hover:text-orange-500 transition-colors rounded"
                       >
                         Sign Out
                       </button>
@@ -562,16 +659,16 @@ const Navbar = () => {
               </div>
             ) : (
               <div className="flex items-center gap-3">
-                <a href="/signin">
+                <NavLink to="/signin">
                   <button className="px-6 py-2.5 border-2 border-orange-500 text-orange-500 font-medium hover:bg-orange-50 transition-colors rounded">
                     Sign In
                   </button>
-                </a>
-                <a href="/signup">
+                </NavLink>
+                <NavLink to="/signup">
                   <button className="px-6 py-2.5 bg-orange-500 text-white font-medium hover:bg-orange-600 transition-colors rounded">
                     Sign Up
                   </button>
-                </a>
+                </NavLink>
               </div>
             )}
           </div>
